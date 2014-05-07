@@ -1,4 +1,9 @@
 class InfoSnippetsController < ApplicationController
+
+  def initialize
+    @info = InfoSnippet.new
+  end
+
   def new
   end
 
@@ -16,7 +21,6 @@ class InfoSnippetsController < ApplicationController
   private
 
   def info_params
-    binding.pry
     params.require(:info_snippet).permit(:text)
   end
 end

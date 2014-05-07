@@ -1,0 +1,6 @@
+%h1= 'New Information'
+
+= form_for @info, url: info_snippets_path do |i|
+  = i.text_area :text, label: false
+  .submit-button
+    = i.submit
