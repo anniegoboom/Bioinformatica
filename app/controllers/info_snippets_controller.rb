@@ -7,15 +7,33 @@ class InfoSnippetsController < ApplicationController
   def new
   end
 
+  def index
+    @info_snippets = InfoSnippet.all
+  end
+
   def create
     @info = InfoSnippet.new(info_params)
 
     @info.save
-    redirect_to @info
+    render :new
   end
 
   def show
     @info = InfoSnippet.find(params[:id])
+  end
+
+  def edit
+    @info = InfoSnippet.find(params[:id])
+  end
+
+  def update
+    @info = InfoSnippet.find(params[:id])
+
+    if @info.update_attributes(info_params)
+      render :show
+    else
+      render :edit
+    end
   end
 
   private

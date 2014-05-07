@@ -1,6 +1,6 @@
-%h1= 'New Information'
+%h1= 'Editing Info Snippet'
 
-= form_for @info, url: info_snippets_path do |i|
+= form_for @info, url: info_snippet_path(@info) do |i|
   .error-explanation
     - if @info.errors.any?
       %h2= 'Please fix the following errors:'

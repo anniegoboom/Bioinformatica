@@ -1,0 +1,4 @@
+- @info_snippets.each do |info|
+  .info-snippet
+    = link_to info.text, info_snippet_path(info)
+    = link_to 'Edit', edit_info_snippet_path(info)
