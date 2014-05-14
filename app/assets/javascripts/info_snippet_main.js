@@ -1,15 +1,15 @@
 angular.module("app",['app_service'])
 
-function nav_controller($scope, application_service, sorting_var) {
+function nav_controller($scope, ajax_service, sorting_var) {
 //user information probably
 }
-nav_controller.$inject = ['$scope', 'application_service']
+nav_controller.$inject = ['$scope', 'ajax_service']
 
-function body_controller($scope, application_service, SortingVar) {
+function body_controller($scope, ajax_service, SortingVar) {
   $scope.info_snippets = {}
 
-  application_service.get_info_snippets(function(status, data){
+  ajax_service.get_info_snippets(function(status, data){
     $scope.info_snippets = data
   })
 }
-body_controller.$inject = ['$scope', 'application_service']
+body_controller.$inject = ['$scope', 'ajax_service']

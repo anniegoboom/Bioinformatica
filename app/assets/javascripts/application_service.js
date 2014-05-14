@@ -1,4 +1,4 @@
-angular.module('app_service', [ ]).
+angular.module('app_service', [ 'app_helpers' ]).
 value('CONST',{
   Urls:{
       'get_info_snippets': '/info_snippets',
@@ -6,21 +6,10 @@ value('CONST',{
       'snippets_by_tag': '/tags/{0}/info_snippet'
   }
 }).
-factory('application_service', ['CONST', '$http', function(CONST, $http){
-  var application_service = { };
+factory('ajax_service', ['CONST', '$http', 'url_formatter', function(CONST, $http, url_formatter){
+  var ajax_service = {};
 
-  //helper method for formatting the url. this is usually part of a different JS class that's shared among all the other applications
-  var format = function() {
-      var s = arguments[0];
-      for (var i = 0; i < arguments.length - 1; i++) {
-        var reg = new RegExp("\\{" + i + "\\}", "gm");
-        s = s.replace(reg, arguments[i + 1]);
-      }
-
-      return s;
-  }
-
-  application_service.get_info_snippets = function(callback){
+  ajax_service.get_info_snippets = function(callback){
     var url = CONST.Urls.get_info_snippets;
     $http.get(url)
       .success(function(data, status) {
@@ -31,5 +20,5 @@ factory('application_service', ['CONST', '$http', function(CONST, $http){
       });
   }
 
-  return application_service;
+  return ajax_service;
 }]);
