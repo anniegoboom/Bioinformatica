@@ -9,6 +9,7 @@ gem 'mysql2',                 '0.3.15'
 gem 'jquery-rails'
 gem "haml-rails"
 gem 'strong_parameters'
+gem 'angularjs-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -18,8 +18,7 @@ class Tag < ActiveRecord::Base
   end
 
   def self.find_by_name_and_type(name, tag_type)
-    tags_array = tag_type.tags
-    tags_array.each do |tag|
+    tag_type.tags.each do |tag|
       return tag if equivalent_names(tag.tag, name)
     end
     nil

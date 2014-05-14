@@ -1,41 +1,48 @@
-class BioinformaticaControllerController < ApplicationController
+class BioinformaticaController < ApplicationController
   respond_to :html
 
-  def new
-  end
-
   def index
-    @info_snippets = InfoSnippet.all
+    info_snippets = InfoSnippet.all
+      info_snippets.each do |info|
+            puts info.text
+      end
   end
 
-  def create
-    @info = InfoSnippet.new(info_params)
+  # def new
+  # end
 
-    @info.save
-    render :new
-  end
+  # def index
+  #   @info_snippets = InfoSnippet.all
+  # end
 
-  def show
-    @info = InfoSnippet.find(params[:id])
-  end
+  # def create
+  #   @info = InfoSnippet.new(info_params)
 
-  def edit
-    @info = InfoSnippet.find(params[:id])
-  end
+  #   @info.save
+  #   render :new
+  # end
 
-  def update
-    @info = InfoSnippet.find(params[:id])
+  # def show
+  #   @info = InfoSnippet.find(params[:id])
+  # end
 
-    if @info.update_attributes(info_params)
-      render :show
-    else
-      render :edit
-    end
-  end
+  # def edit
+  #   @info = InfoSnippet.find(params[:id])
+  # end
 
-  private
+  # def update
+  #   @info = InfoSnippet.find(params[:id])
 
-  def info_params
-    params.require(:info_snippet).permit(:text)
-  end
+  #   if @info.update_attributes(info_params)
+  #     render :show
+  #   else
+  #     render :edit
+  #   end
+  # end
+
+  # private
+
+  # def info_params
+  #   params.require(:info_snippet).permit(:text)
+  # end
 end
