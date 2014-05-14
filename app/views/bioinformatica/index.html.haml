@@ -2,6 +2,11 @@
 .content
   %section{"ng-app" => "app"}
     .container{"ng-controller" => "nav_controller"}
-    .container{"ng-controller" => "body_controller"}
+    .container{"ng-controller" => "snippets_controller"}
       .info_snippets{"ng-repeat" => "i in info_snippets"}
         {{i.text}}
+    .container{"ng-controller" => "tags_controller"}
+      .info_snippet
+        {{info.text}}
+      .tags{"ng-repeat" => "tag in snippet_tags"}
+        {{ag.tag}}

@@ -5,7 +5,7 @@ function nav_controller($scope, ajax_service, sorting_var) {
 }
 nav_controller.$inject = ['$scope', 'ajax_service']
 
-function body_controller($scope, ajax_service, SortingVar) {
+function snippets_controller($scope, ajax_service, SortingVar) {
   $scope.info_snippets = {}
 
   ajax_service.get_info_snippets(function(status, data){
