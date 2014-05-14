@@ -1,5 +1,5 @@
 class InfoSnippet < ActiveRecord::Base
-  has_many :tags
+  has_and_belongs_to_many :tags
 
   validates :text, presence: true
 

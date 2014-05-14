@@ -11,14 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140514061408) do
+ActiveRecord::Schema.define(:version => 20140514065424) do
 
   create_table "info_snippets", :force => true do |t|
     t.text     "text"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "tag_id"
   end
+
+  create_table "info_snippets_tags", :id => false, :force => true do |t|
+    t.integer "info_snippet_id", :null => false
+    t.integer "tag_id",          :null => false
+  end
+
+  add_index "info_snippets_tags", ["info_snippet_id", "tag_id"], :name => "index_info_snippets_tags_on_info_snippet_id_and_tag_id", :unique => true
 
   create_table "tag_types", :force => true do |t|
     t.string   "name"
