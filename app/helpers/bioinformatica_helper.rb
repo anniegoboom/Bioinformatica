@@ -1,0 +1,2 @@
+module BioinformaticaControllerHelper
+end
