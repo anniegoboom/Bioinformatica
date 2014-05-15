@@ -1,8 +1,0 @@
-= render :partial => 'nav'
-
-.content
-  %h1= 'All the tags!'
-  %section{"ng-app" => "app"}
-    .container{"ng-controller" => "tags_controller"}
-      .tags{"ng-repeat" => "tag in tags"}
-        {{tag.type}}: {{tag.name}}
