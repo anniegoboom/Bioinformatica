@@ -1,5 +1,2 @@
-.nav{"ng-controller" => "nav_controller"}
-  .snippets-link
-    = link_to('All Snippets', bioinformatica_snippets_path)
-  .tags-link
-    = link_to('All Tags', bioinformatica_tags_path)
+.nav{'ng-controller' => 'nav_controller'}
+  %a{:'ng-click' => 'get_all()'}= 'ALL'

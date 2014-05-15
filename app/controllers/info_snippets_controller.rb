@@ -26,13 +26,13 @@ class InfoSnippetsController < ApplicationController
       }
     end
     @info_hash =
-      {
+      [{
         id: snippet.id,
         text: snippet.text,
         tags: tags,
         created_at: snippet.created_at,
         updated_at: snippet.updated_at
-      }
+      }]
     render_json
   end
 

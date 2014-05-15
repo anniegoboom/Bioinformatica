@@ -1,8 +1,5 @@
 Bioinformatica::Application.routes.draw do
 
-  get "bioinformatica/snippets"
-  get "bioinformatica/tags"
-
   resources :info_snippets, :only => [:show, :index] do
     resources :tags, :only => [:index]
   end
@@ -13,5 +10,5 @@ Bioinformatica::Application.routes.draw do
     resources :tags, :only => [:index]
   end
 
-  root :to => 'bioinformatica#snippets'
+  root :to => 'bioinformatica#index'
 end

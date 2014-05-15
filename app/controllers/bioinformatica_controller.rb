@@ -1,10 +1,7 @@
 class BioinformaticaController < ApplicationController
   respond_to :html
 
-  def snippets
-  end
-
-  def tags
+  def index
   end
 
   # def new

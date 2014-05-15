@@ -1,8 +1,29 @@
 function snippets_controller($scope, ajax_service) {
   $scope.info_snippets = {}
 
-  ajax_service.get_all_info_snippets(function(status, data){
-    $scope.info_snippets = data
-  })
+  get_all_snippets = function(){
+    ajax_service.get_all_info_snippets(function(status, data){
+      $scope.info_snippets = data
+    })
+  }
+
+  // get_all_snippets()
+
+  get_snippet_by_id = function(snippet_id){
+    ajax_service.get_snippet_by_id(snippet_id, function(status, data){
+      $scope.info_snippets = data
+      //TODO: tell tags controller
+    })
+  }
+
+  get_snippets_by_tag_id = function(tag_id){
+    ajax_service.get_snippets_by_tag_id(tag_id, function(status, data){
+      $scope.info_snippets = data
+      //TODO: tell tags controller
+    })
+  }
+
+  get_snippets_by_tag_id(1)
+
 }
 snippets_controller.$inject = ['$scope', 'ajax_service']

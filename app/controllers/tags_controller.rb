@@ -26,13 +26,13 @@ class TagsController < ApplicationController
       }
     end
     @tag_hash =
-      {
+      [{
         id: tag.id,
         name: tag.name,
-        type: tag.tag_type.id,
+        type: tag.tag_type.name,
         type_id: tag.tag_type.id,
         info_snippets: info_snippets
-      }
+      }]
     render_json
   end
 

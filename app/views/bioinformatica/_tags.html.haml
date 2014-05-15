@@ -1,0 +1,4 @@
+.container{id: 'tags-container', "ng-controller" => "tags_controller"}
+  %h1= 'Tags'
+  .tags{"ng-repeat" => "tag in tags"}
+    {{tag.type}}: {{tag.name}}
