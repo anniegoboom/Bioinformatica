@@ -87,10 +87,18 @@ factory('communication_service', [function(){
   communication_service.snippet_id = null
   communication_service.tag_id = null
 
-  communication_service.setAll = function(){
-    communication_service.snippet_id = null
-    communication_service.tag_id = null
+  communication_service.resetAll = function(){
+    communication_service.resetSnippetId()
+    communication_service.resetTagId()
     return true
+  }
+
+  communication_service.resetSnippetId = function(){
+    communication_service.snippet_id = null
+  }
+
+  communication_service.resetTagId = function(){
+    communication_service.tag_id = null
   }
 
   communication_service.getSnippetId = function(){
@@ -98,8 +106,8 @@ factory('communication_service', [function(){
   }
 
   communication_service.setSnippetId = function(id){
-    if(communication_service.snippet_id != null){
-      communication_service.snippet_id = null
+    if(communication_service.snippet_id == id){
+      communication_service.resetAll()
     }
     else{
       communication_service.snippet_id = id
@@ -107,14 +115,25 @@ factory('communication_service', [function(){
     return communication_service.snippet_id
   }
 
-  // communication_service.getTagId = function(){
-  //   return communication_service.tag_id
-  // }
+  communication_service.getTagId = function(){
 
-  // communication_service.setTagId = function(id){
-  //   communication_service.tag_id = id
-  //   return communication_service.tag_id
-  // }
+    return communication_service.tag_id
+  }
+
+  communication_service.setTagId = function(id){
+    if(communication_service.tag_id == id){
+      communication_service.resetAll()
+    }
+    else{
+      communication_service.tag_id = id
+    }
+    return communication_service.tag_id
+  }
+
+  communication_service.log = function(){
+    console.log(communication_service.snippet_id)
+    console.log(communication_service.tag_id)
+  }
 
   return communication_service
 }]);

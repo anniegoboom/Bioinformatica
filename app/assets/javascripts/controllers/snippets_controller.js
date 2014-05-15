@@ -40,5 +40,21 @@ function snippets_controller($scope, ajax_service, communication_service) {
     },
     true
   )
+
+  $scope.$watch(
+    function() {
+      return communication_service.getTagId()
+    },
+    function(){
+      tag_id = communication_service.getTagId()
+      if(tag_id == null){
+        get_all_snippets()
+      }
+      else{
+        get_snippets_by_tag_id(tag_id)
+      }
+    },
+    true
+  )
 }
 snippets_controller.$inject = ['$scope', 'ajaxService', 'communication_service']

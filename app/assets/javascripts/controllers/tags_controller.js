@@ -23,6 +23,41 @@ function tags_controller($scope, ajax_service, communication_service) {
     })
   }
 
-  get_all_tags()
+  $scope.select_tag = function(tag_id){
+    communication_service.setTagId(tag_id)
+  }
+
+  $scope.$watch(
+    function() {
+      return communication_service.getSnippetId()
+    },
+    function(){
+      snippet_id = communication_service.getSnippetId()
+      if(snippet_id == null){
+        get_all_tags()
+      }
+      else{
+        get_tags_by_snippet_id(snippet_id)
+      }
+    },
+    true
+  )
+
+  $scope.$watch(
+    function() {
+      return communication_service.getTagId()
+    },
+    function(){
+      tag_id = communication_service.getTagId()
+      if(tag_id == null){
+        get_all_tags()
+      }
+      else{
+        get_tag_by_id(tag_id)
+      }
+    },
+    true
+  )
+
 }
 snippets_controller.$inject = ['$scope', 'ajax_service', 'communication_service']
