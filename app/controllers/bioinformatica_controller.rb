@@ -2,10 +2,6 @@ class BioinformaticaController < ApplicationController
   respond_to :html
 
   def snippets
-    info_snippets = InfoSnippet.all
-      info_snippets.each do |info|
-            puts info.text
-      end
   end
 
   def tags

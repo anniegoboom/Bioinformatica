@@ -1,0 +1,8 @@
+= render :partial => 'nav'
+
+.content
+  %section{"ng-app" => "app"}
+    .container{"ng-controller" => "snippet_show_controller"}
+      %h1= {{snippet.text}}
+      .tags{"ng-repeat" => "tag in snippet.tags"}
+        {{tag.type}} : {{tag.name}}
