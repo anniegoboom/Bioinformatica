@@ -98,18 +98,23 @@ factory('communication_service', [function(){
   }
 
   communication_service.setSnippetId = function(id){
-    communication_service.snippet_id = id
+    if(communication_service.snippet_id != null){
+      communication_service.snippet_id = null
+    }
+    else{
+      communication_service.snippet_id = id
+    }
     return communication_service.snippet_id
   }
 
-  communication_service.getTagId = function(){
-    return communication_service.tag_id
-  }
+  // communication_service.getTagId = function(){
+  //   return communication_service.tag_id
+  // }
 
-  communication_service.setTagId = function(id){
-    communication_service.tag_id = id
-    return communication_service.tag_id
-  }
+  // communication_service.setTagId = function(id){
+  //   communication_service.tag_id = id
+  //   return communication_service.tag_id
+  // }
 
   return communication_service
 }]);

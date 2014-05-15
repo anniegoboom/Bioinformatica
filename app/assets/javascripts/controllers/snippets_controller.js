@@ -21,7 +21,7 @@ function snippets_controller($scope, ajax_service, communication_service) {
     })
   }
 
-  $scope.set_snippet = function(snippet_id){
+  $scope.select_snippet = function(snippet_id){
     communication_service.setSnippetId(snippet_id)
   }
 

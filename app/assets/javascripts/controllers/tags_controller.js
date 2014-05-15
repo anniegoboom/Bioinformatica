@@ -23,5 +23,6 @@ function tags_controller($scope, ajax_service, communication_service) {
     })
   }
 
+  get_all_tags()
 }
 snippets_controller.$inject = ['$scope', 'ajax_service', 'communication_service']

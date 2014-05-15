@@ -2,5 +2,5 @@
   .span6
     %h3= 'Snippets'
     .info_snippets{'ng-repeat' => 'i in info_snippets'}
-      {{i.text}}
+      %a{:'ng-click' => "select_snippet(i.id)"}= "{{i.text}}"
 
