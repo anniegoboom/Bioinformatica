@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140514065424) do
+ActiveRecord::Schema.define(:version => 20140515051052) do
 
   create_table "info_snippets", :force => true do |t|
     t.text     "text"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(:version => 20140514065424) do
   end
 
   create_table "tags", :force => true do |t|
-    t.string   "tag"
+    t.string   "name"
     t.integer  "tag_type_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false

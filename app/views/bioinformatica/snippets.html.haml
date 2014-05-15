@@ -1,0 +1,8 @@
+= render :partial => 'nav'
+
+.content
+  %h1= 'A list of all Snippets'
+  %section{"ng-app" => "app"}
+    .container{"ng-controller" => "snippets_controller"}
+      .info_snippets{"ng-repeat" => "i in info_snippets"}
+        {{i.text}}

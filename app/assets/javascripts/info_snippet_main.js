@@ -12,4 +12,4 @@ function snippets_controller($scope, ajax_service, SortingVar) {
     $scope.info_snippets = data
   })
 }
-body_controller.$inject = ['$scope', 'ajax_service']
+snippets_controller.$inject = ['$scope', 'ajax_service']
