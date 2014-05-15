@@ -1,4 +1,4 @@
-function snippets_controller($scope, ajax_service) {
+function snippets_controller($scope, ajax_service, communication_service) {
   $scope.info_snippets = {}
 
   get_all_snippets = function(){
@@ -6,8 +6,6 @@ function snippets_controller($scope, ajax_service) {
       $scope.info_snippets = data
     })
   }
-
-  // get_all_snippets()
 
   get_snippet_by_id = function(snippet_id){
     ajax_service.get_snippet_by_id(snippet_id, function(status, data){
@@ -23,7 +21,24 @@ function snippets_controller($scope, ajax_service) {
     })
   }
 
-  get_snippets_by_tag_id(1)
+  $scope.set_snippet = function(snippet_id){
+    communication_service.setSnippetId(snippet_id)
+  }
 
+  $scope.$watch(
+    function() {
+      return communication_service.getSnippetId()
+    },
+    function(){
+      snippet_id = communication_service.getSnippetId()
+      if(snippet_id == null){
+        get_all_snippets()
+      }
+      else{
+        get_snippet_by_id(snippet_id)
+      }
+    },
+    true
+  )
 }
-snippets_controller.$inject = ['$scope', 'ajax_service']
+snippets_controller.$inject = ['$scope', 'ajaxService', 'communication_service']

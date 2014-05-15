@@ -1,4 +1,4 @@
-function tags_controller($scope, ajax_service) {
+function tags_controller($scope, ajax_service, communication_service) {
   $scope.tags = {}
 
   get_all_tags = function(){
@@ -23,6 +23,5 @@ function tags_controller($scope, ajax_service) {
     })
   }
 
-  get_tags_by_snippet_id(1)
 }
-snippets_controller.$inject = ['$scope', 'ajax_service']
+snippets_controller.$inject = ['$scope', 'ajax_service', 'communication_service']

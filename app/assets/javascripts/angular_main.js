@@ -1,1 +1,1 @@
-angular.module("app",['app_service'])
+angular.module('app',['app_service'])

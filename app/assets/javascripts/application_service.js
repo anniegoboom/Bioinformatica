@@ -1,4 +1,4 @@
-angular.module('app_service', [ 'app_helpers' ]).
+angular.module('app_service', ['app_helpers']).
 value('CONST',{
   Urls:{
       'get_all_info_snippets' : '/info_snippets',
@@ -11,7 +11,7 @@ value('CONST',{
   }
 }).
 factory('ajax_service', ['CONST', '$http', 'url_formatter', function(CONST, $http, url_formatter){
-  var ajax_service = {};
+  var ajax_service = {}
 
   ajax_service.get_all_info_snippets = function(callback){
     var url = CONST.Urls.get_all_info_snippets;
@@ -79,5 +79,37 @@ factory('ajax_service', ['CONST', '$http', 'url_formatter', function(CONST, $htt
       });
   }
 
-  return ajax_service;
+  return ajax_service
+}]).
+factory('communication_service', [function(){
+  var communication_service = {}
+
+  communication_service.snippet_id = null
+  communication_service.tag_id = null
+
+  communication_service.setAll = function(){
+    communication_service.snippet_id = null
+    communication_service.tag_id = null
+    return true
+  }
+
+  communication_service.getSnippetId = function(){
+    return communication_service.snippet_id
+  }
+
+  communication_service.setSnippetId = function(id){
+    communication_service.snippet_id = id
+    return communication_service.snippet_id
+  }
+
+  communication_service.getTagId = function(){
+    return communication_service.tag_id
+  }
+
+  communication_service.setTagId = function(id){
+    communication_service.tag_id = id
+    return communication_service.tag_id
+  }
+
+  return communication_service
 }]);
