@@ -4,6 +4,7 @@ value('CONST',{
       'get_all_info_snippets': '/info_snippets',
       'get_all_tags': '/tags',
       'snippets_by_tag': '/tags/{0}/info_snippet'
+      'get_tag_type': '/tag_types/{0}'
   }
 }).
 factory('ajax_service', ['CONST', '$http', 'url_formatter', function(CONST, $http, url_formatter){
