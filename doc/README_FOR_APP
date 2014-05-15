@@ -1,2 +1,8 @@
-Use this README file to introduce your application and point to useful places in the API for learning more.
-Run "rake doc:app" to generate API documentation for your models, controllers, helpers, and libraries.
+README: bioinformatica
+
+next steps:
+-put in real data for testing
+-fix the buggy state. make the watchers aware of each other
+-css!!!!
+-user login mode
+-edit/update (using rails)
