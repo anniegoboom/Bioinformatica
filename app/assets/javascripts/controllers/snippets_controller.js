@@ -10,14 +10,12 @@ function snippets_controller($scope, ajax_service, communication_service) {
   get_snippet_by_id = function(snippet_id){
     ajax_service.get_snippet_by_id(snippet_id, function(status, data){
       $scope.info_snippets = data
-      //TODO: tell tags controller
     })
   }
 
   get_snippets_by_tag_id = function(tag_id){
     ajax_service.get_snippets_by_tag_id(tag_id, function(status, data){
       $scope.info_snippets = data
-      //TODO: tell tags controller
     })
   }
 
@@ -27,28 +25,16 @@ function snippets_controller($scope, ajax_service, communication_service) {
 
   $scope.$watch(
     function() {
-      return communication_service.getSnippetId()
+      return communication_service.hasSomethingChanged()
     },
     function(){
       snippet_id = communication_service.getSnippetId()
-      if(snippet_id == null){
-        get_all_snippets()
-      }
-      else{
-        get_snippet_by_id(snippet_id)
-      }
-    },
-    true
-  )
-
-  $scope.$watch(
-    function() {
-      return communication_service.getTagId()
-    },
-    function(){
       tag_id = communication_service.getTagId()
-      if(tag_id == null){
+      if(snippet_id == null && tag_id == null){
         get_all_snippets()
+      }
+      else if(tag_id == null){
+        get_snippet_by_id(snippet_id)
       }
       else{
         get_snippets_by_tag_id(tag_id)

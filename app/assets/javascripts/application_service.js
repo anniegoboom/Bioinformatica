@@ -86,19 +86,21 @@ factory('communication_service', [function(){
 
   communication_service.snippet_id = null
   communication_service.tag_id = null
+  communication_service.has_change = false
+
+  communication_service.hasSomethingChanged = function(){
+    return communication_service.has_change
+  }
+
+  communication_service.somethingChanged = function(){
+    communication_service.has_change = !communication_service.has_change
+  }
 
   communication_service.resetAll = function(){
     communication_service.resetSnippetId()
     communication_service.resetTagId()
+    communication_service.somethingChanged()
     return true
-  }
-
-  communication_service.resetSnippetId = function(){
-    communication_service.snippet_id = null
-  }
-
-  communication_service.resetTagId = function(){
-    communication_service.tag_id = null
   }
 
   communication_service.getSnippetId = function(){
@@ -111,12 +113,17 @@ factory('communication_service', [function(){
     }
     else{
       communication_service.snippet_id = id
+      communication_service.resetTagId()
+      communication_service.somethingChanged()
     }
     return communication_service.snippet_id
   }
 
-  communication_service.getTagId = function(){
+  communication_service.resetSnippetId = function(){
+    communication_service.snippet_id = null
+  }
 
+  communication_service.getTagId = function(){
     return communication_service.tag_id
   }
 
@@ -126,13 +133,19 @@ factory('communication_service', [function(){
     }
     else{
       communication_service.tag_id = id
+      communication_service.resetSnippetId()
+      communication_service.somethingChanged()
     }
     return communication_service.tag_id
   }
 
+  communication_service.resetTagId = function(){
+    communication_service.tag_id = null
+  }
+
   communication_service.log = function(){
-    console.log(communication_service.snippet_id)
-    console.log(communication_service.tag_id)
+    console.log('snippet: '+communication_service.snippet_id)
+    console.log('tag: '+communication_service.tag_id)
   }
 
   return communication_service
