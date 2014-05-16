@@ -1,6 +1,5 @@
 .container{id: 'tags-container', 'ng-controller' => 'tags_controller'}
-  .span5
-    %h3= 'Tags'
-    .tags{'ng-repeat' => 'tag in tags'}
-      {{tag.type}}:
-      %a{:'ng-click' => "select_tag(tag.id)"}= "{{tag.name}}"
+  %h3= 'Tags'
+  .tags{'ng-repeat' => 'tag in tags'}
+    {{tag.type}}:
+    %a{:'ng-click' => "select_tag(tag.id)"}= "{{tag.name}}"

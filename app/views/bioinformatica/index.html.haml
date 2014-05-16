@@ -1,6 +1,8 @@
 .content{'ng-app' => 'app'}
-  = render :partial => 'nav'
-  .left_side
-    = render :partial => 'tags'
-  .right_side
-    = render :partial => 'snippets'
+  .nav
+    = render :partial => 'nav'
+  .container#snippets-main
+    .span5#left_side
+      = render :partial => 'tags'
+    .span5#right_side
+      = render :partial => 'snippets'

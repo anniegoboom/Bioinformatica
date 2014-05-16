@@ -1,6 +1,5 @@
 .container{id: 'snippets-container', 'ng-controller' => 'snippets_controller'}
-  .span5
-    %h3= 'Snippets'
-    .info_snippets{'ng-repeat' => 'i in info_snippets'}
-      %a{:'ng-click' => "select_snippet(i.id)"}= "{{i.text}}"
+  %h3= 'Snippets'
+  .info_snippets{'ng-repeat' => 'i in info_snippets'}
+    %a{:'ng-click' => "select_snippet(i.id)"}= "{{i.text}}"
 
