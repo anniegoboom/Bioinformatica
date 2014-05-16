@@ -1,9 +1,11 @@
 function tags_controller($scope, ajax_service, communication_service) {
   $scope.tags = {}
+  $scope.one_tag = null
 
   get_all_tags = function(){
     ajax_service.get_all_tags(function(status, data){
       $scope.tags = data
+      $scope.one_tag = null
     })
   }
 
@@ -11,7 +13,8 @@ function tags_controller($scope, ajax_service, communication_service) {
 
   get_tag_by_id = function(tag_id){
     ajax_service.get_tag_by_id(tag_id, function(status, data){
-      $scope.tags = data
+      $scope.one_tag = data[0]
+      debugger
       //TODO: tell snippets controller
     })
   }
@@ -19,6 +22,7 @@ function tags_controller($scope, ajax_service, communication_service) {
   get_tags_by_snippet_id = function(snippet_id){
     ajax_service.get_tags_by_snippet_id(snippet_id, function(status, data){
       $scope.tags = data
+      $scope.one_tag = null
       //TODO: tell snippets controller
     })
   }

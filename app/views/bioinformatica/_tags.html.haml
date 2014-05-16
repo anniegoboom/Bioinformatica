@@ -1,5 +1,12 @@
 .container{id: 'tags-container', 'ng-controller' => 'tags_controller'}
   %h3= 'Tags'
-  .tags{'ng-repeat' => 'tag in tags'}
-    {{tag.type}}:
-    %a{:'ng-click' => "select_tag(tag.id)"}= "{{tag.name}}"
+  .tags{'ng-show' => '!one_tag'}
+    .row{'ng-repeat' => '(type, t) in tags'}
+      .type{'ng-hide' => "t.length == 0"}
+        %h5= "{{type}}".pluralize
+      .tag{'ng-repeat' => 'tag in t'}
+        %a{:'ng-click' => "select_tag(tag.id)"}= "{{tag.name}}"
+  .tag{'ng-show' => 'one_tag'}
+    .row
+      %h5= "{{one_tag.type}}"
+      %a{:'ng-click' => "select_tag(one_tag.id)"}= "{{one_tag.name}}"

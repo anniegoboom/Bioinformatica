@@ -1,8 +1,12 @@
 README: bioinformatica
 
 next steps:
+-fix watch state
+-format tags to display tags by type
+
 -put in real data for testing
--fix the buggy state. make the watchers aware of each other
 -css!!!!
 -user login mode
 -edit/update (using rails)
+-clearfix
+- other views?
