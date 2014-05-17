@@ -7,5 +7,9 @@ class InfoSnippet < ActiveRecord::Base
   scope :by_create_date, order('created_at DESC')
   scope :by_update_date, order('updated_at DESC')
 
-  attr_accessible :text
+  attr_accessible :text, :tag_ids
+
+  def to_s
+    self.text
+  end
 end

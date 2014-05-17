@@ -10,7 +10,7 @@ class Tag < ActiveRecord::Base
   validates_associated :tag_type
   validates_associated :info_snippets
 
-  attr_accessible :name, :tag_type_id
+  attr_accessible :name, :tag_type_id, :info_snippet_ids
 
   def self.find_or_create_new(name, type)
     tag_type = TagType.find_by_name(type) #TODO: blow up if type not found
