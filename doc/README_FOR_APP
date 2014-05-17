@@ -1,12 +1,19 @@
 README: bioinformatica
 
 next steps:
--fix watch state
--format tags to display tags by type
+- put in real data for testing
+- css!!!!
+# make the snippets css prettier
+# add some colors & styles
+- user login/loggable mode
+- edit/update (using rails) maybe active admin might suffice?
+- clearfix?
+- search functionality for tags
 
--put in real data for testing
--css!!!!
--user login mode
--edit/update (using rails)
--clearfix
+later versions:
 - other views?
+- more information about snippets (perhaps in the snippets view)
+- sorting functionality
+- search functionality?
+- better equality check for tags
+- more advanced edit/update form
