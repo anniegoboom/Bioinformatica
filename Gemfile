@@ -6,11 +6,15 @@ gem 'rails', '3.2.13'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2',                 '0.3.15'
-gem 'jquery-rails'
-gem "haml-rails"
+gem 'haml'
 gem 'strong_parameters'
 gem 'angularjs-rails'
-gem "twitter-bootstrap-rails"
+gem 'activerecord-mysql-adapter'
+gem 'unicorn'
+gem 'jquery-rails'
+gem 'jquery-ui-sass-rails',   '4.0.3.0'
+gem 'twitter-bootstrap-rails'
+gem 'activeadmin',           '0.5'
 
 # Gems used only for assets and not required
 # in production environments by default.

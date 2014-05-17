@@ -1,5 +1,9 @@
 Bioinformatica::Application.routes.draw do
 
+  ActiveAdmin.routes(self)
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
+
   resources :info_snippets, :only => [:show, :index] do
     resources :tags, :only => [:index]
   end
