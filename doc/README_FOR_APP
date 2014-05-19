@@ -6,7 +6,8 @@ next steps:
 # make the snippets css prettier
 # add some colors & styles
 - user login/loggable mode
-- edit/update (using rails) maybe active admin might suffice?
+- edit/update (using rails)
+- permlinks!
 - clearfix?
 - search functionality for tags
 
