@@ -81,71 +81,26 @@ factory('ajax_service', ['CONST', '$http', 'url_formatter', function(CONST, $htt
 
   return ajax_service
 }]).
-factory('communication_service', [function(){
+factory('communication_service', ['$location', function($location){
   var communication_service = {}
 
-  communication_service.snippet_id = null
-  communication_service.tag_id = null
-  communication_service.has_change = false
-
-  communication_service.hasSomethingChanged = function(){
-    return communication_service.has_change
-  }
-
-  communication_service.somethingChanged = function(){
-    communication_service.has_change = !communication_service.has_change
+  communication_service.updateURL = function(type, id){
+    if(type==null) $location.path('/');
+    else $location.path(type+'='+id);
   }
 
   communication_service.resetAll = function(){
-    communication_service.resetSnippetId()
-    communication_service.resetTagId()
-    communication_service.somethingChanged()
+    $location.path('/');
+    communication_service.updateURL(null)
     return true
   }
 
-  communication_service.getSnippetId = function(){
-    return communication_service.snippet_id
-  }
-
   communication_service.setSnippetId = function(id){
-    if(communication_service.snippet_id == id){
-      communication_service.resetAll()
-    }
-    else{
-      communication_service.snippet_id = id
-      communication_service.resetTagId()
-      communication_service.somethingChanged()
-    }
-    return communication_service.snippet_id
-  }
-
-  communication_service.resetSnippetId = function(){
-    communication_service.snippet_id = null
-  }
-
-  communication_service.getTagId = function(){
-    return communication_service.tag_id
+    communication_service.updateURL('snippet', id)
   }
 
   communication_service.setTagId = function(id){
-    if(communication_service.tag_id == id){
-      communication_service.resetAll()
-    }
-    else{
-      communication_service.tag_id = id
-      communication_service.resetSnippetId()
-      communication_service.somethingChanged()
-    }
-    return communication_service.tag_id
-  }
-
-  communication_service.resetTagId = function(){
-    communication_service.tag_id = null
-  }
-
-  communication_service.log = function(){
-    console.log('snippet: '+communication_service.snippet_id)
-    console.log('tag: '+communication_service.tag_id)
+    communication_service.updateURL('tag', id)
   }
 
   return communication_service

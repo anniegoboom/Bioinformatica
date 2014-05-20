@@ -1,4 +1,4 @@
-function tags_controller($scope, ajax_service, communication_service) {
+function tags_controller($scope, $location, ajax_service, communication_service) {
   $scope.tags = {}
   $scope.one_tag = null
 
@@ -29,23 +29,23 @@ function tags_controller($scope, ajax_service, communication_service) {
   }
 
   $scope.$watch(
-    function() {
-      return communication_service.hasSomethingChanged()
+    function(){
+      return $location.path();
     },
     function(){
-      snippet_id = communication_service.getSnippetId()
-      tag_id = communication_service.getTagId()
-      if(snippet_id == null && tag_id == null){
-        get_all_tags()
-      }
-      else if(snippet_id == null){
-        get_tag_by_id(tag_id)
-      }
-      else{
-        get_tags_by_snippet_id(snippet_id)
-      }
+      tag_id = null
+      snippet_id = null
+      urlString = $location.path().split('=')
+      type = urlString[0]
+      id = urlString[1]
+      if(type=='/tag') tag_id = id
+      if(type=='/snippet') snippet_id = id
+
+      if(snippet_id == null && tag_id == null) get_all_tags()
+      else if(snippet_id == null) get_tag_by_id(tag_id)
+      else get_tags_by_snippet_id(snippet_id)
     },
     true
   )
 }
-snippets_controller.$inject = ['$scope', 'ajax_service', 'communication_service']
+snippets_controller.$inject = ['$scope', '$location', 'ajax_service', 'communication_service']
