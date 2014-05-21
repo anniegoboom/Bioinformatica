@@ -1,6 +1,7 @@
 class Tag < ActiveRecord::Base
   belongs_to :tag_type
   has_and_belongs_to_many :info_snippets
+  has_and_belongs_to_many :programs
 
   scope :by_name, order('name ASC')
   scope :by_name_desc, order('name DESC')
@@ -9,8 +10,9 @@ class Tag < ActiveRecord::Base
   validates :tag_type, presence: true
   validates_associated :tag_type
   validates_associated :info_snippets
+  validates_associated :programs
 
-  attr_accessible :name, :tag_type_id, :info_snippet_ids
+  attr_accessible :name, :tag_type_id, :info_snippet_ids, :program_ids
 
   def self.find_or_create_new(name, type)
     tag_type = TagType.find_by_name(type) #TODO: blow up if type not found
