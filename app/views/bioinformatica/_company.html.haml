@@ -1,0 +1,19 @@
+.container{id: 'company-container', 'ng-controller' => 'company_controller'}
+  .row{id: 'financials'}
+    %ul.no-style
+      %li= "Price: {{company.price}}"
+      %li= "52-week high: {{company.52high}}"
+      %li= "52-week low: {{company.52low}}"
+      %li= "Cash: {{company.cash}}"
+      %li= "Market Cap: {{company.market_cap}}"
+      %li= "Shares Out: {{company.shares}}"
+      %li= "Burn: {{company.burn}}"
+      %li= "Runway: {{company.runway}}"
+  .row{id: 'Timeline'}
+    %h3= 'Timeline'
+    %ul.no-style
+      %li
+  .row{id: 'Diligence'}
+  .row{id: 'SEC'}
+
+

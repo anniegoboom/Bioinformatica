@@ -2,6 +2,9 @@ README: bioinformatica
 
 next steps:
 - put in real data for testing
+- clean up backend api. make it more restful
+- show pages for each thing
+- bioinformatica/ can be the landing page
 - css!!!!
 # make the snippets css prettier
 # add some colors & styles
