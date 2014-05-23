@@ -1,4 +1,6 @@
-%h1= 'Info Snippet'
-%p= @info.text
+.container{id: 'snippets-container', 'ng-controller' => 'snippets_controller'}
+  %h3= 'Snippets'
+  %ul.no-style
+    %li.info-snippet{'ng-repeat' => 'i in info_snippets'}
+      %a{:'ng-click' => "select_snippet(i.id)"}= "{{i.text}}"
 
-= link_to 'Back', info_snippets_path

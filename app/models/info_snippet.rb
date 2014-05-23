@@ -7,7 +7,8 @@ class InfoSnippet < ActiveRecord::Base
   validates_associated :companies
 
   scope :by_tag, order('tag_id ASC')
-  scope :by_create_date, order('created_at DESC')
+  scope :by_date, order('event_date DESC ')
+  scope :by_date_r, order('event_date ASC')
   scope :by_update_date, order('updated_at DESC')
 
   attr_accessible :text, :tag_ids, :program_ids, :company_ids

@@ -9,7 +9,7 @@ class CreateCompanies < ActiveRecord::Migration
       t.integer :market_cap
       t.integer :shares_out
       t.integer :burn
-      t.string :string
+      t.string :runway
 
       t.timestamps
     end
