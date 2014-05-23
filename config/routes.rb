@@ -17,7 +17,7 @@ Bioinformatica::Application.routes.draw do
   end
 
   resources :companies, :only => [:show, :index]
-  resources :drugs, :only => [:show, :index]
+  resources :programs, :only => [:show, :index]
 
   root :to => 'bioinformatica#index'
 end

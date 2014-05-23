@@ -1,0 +1,41 @@
+class ProgramsController < ApplicationController
+  respond_to :json
+
+  def index
+    programs = Program.by_name
+    @program_hash = programs.map do |p|
+      {
+        id: p.id,
+        name: p.name
+      }
+    end
+    render_json
+  end
+
+  def show
+    program = Program.find_by_id(params[:id])
+    companies = program.companies.map do |c|
+      {
+        id: c.id,
+        name: c.name
+      }
+    end
+    timeline_snippets = program.info_snippets.by_date
+    tags = program.tags
+    @program_hash =
+      [{
+        id: program.id,
+        name: program.name,
+        tags: tags,
+        timeline_snippets: timeline_snippets,
+        companies: companies
+        }]
+    render_json
+  end
+
+  private
+
+  def render_json
+    render :json => @program_hash
+  end
+end

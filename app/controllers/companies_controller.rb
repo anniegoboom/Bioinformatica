@@ -14,8 +14,8 @@ class CompaniesController < ApplicationController
 
   def show
     company = Company.find_by_id(params[:id])
-    drugs = company.drugs
-    timeline_snippets = company.info_snippets
+    programs = company.programs
+    timeline_snippets = company.info_snippets.by_date
     diligence_snippets = company.info_snippets
     financials =
       {
@@ -32,7 +32,7 @@ class CompaniesController < ApplicationController
       [{
         id: company.id,
         name: company.name,
-        drugs: drugs,
+        programs: programs,
         financials: financials,
         timeline_snippets: timeline_snippets,
         diligence_snippets: diligence_snippets
