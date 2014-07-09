@@ -86,13 +86,28 @@ factory('communication_service', ['$location', function($location){
 
   communication_service.updateURL = function(type, id){
     if(type==null) $location.path('/');
+    else if(id==undefined) $location.path(type)
     else $location.path(type+'='+id);
   }
 
-  communication_service.resetAll = function(){
-    $location.path('/');
+  communication_service.showAllCompanies = function(){
     communication_service.updateURL(null)
-    return true
+  }
+
+  communication_service.setCompanyId = function(id){
+    communication_service.updateURL('company', id)
+  }
+
+  communication_service.showAllDrugs = function(){
+    communication_service.updateURL('drugs')
+  }
+
+  communication_service.setDrugId = function(id){
+    communication_service.updateURL('drug', id)
+  }
+
+  communication_service.showAllSnippets = function(){
+    communication_service.updateURL('snippets')
   }
 
   communication_service.setSnippetId = function(id){

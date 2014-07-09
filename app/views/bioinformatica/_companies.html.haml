@@ -1,5 +1,6 @@
-.container.span12{id: 'company-container', 'ng-controller' => 'company_controller'}
-  .row{id: 'financials'}
+.container.span12#companies-main{ id: 'company-container', 'ng-controller' => 'company_controller' }
+  .row#financials
+    %h3= 'Financials'
     %ul.no-style
       %li= "Price: {{company.price}}"
       %li= "52-week high: {{company.52high}}"
@@ -9,11 +10,11 @@
       %li= "Shares Out: {{company.shares}}"
       %li= "Burn: {{company.burn}}"
       %li= "Runway: {{company.runway}}"
-  .row{id: 'Timeline'}
+  .row#timeline
     %h3= 'Timeline'
     %ul.no-style
       %li
-  .row{id: 'Diligence'}
-  .row{id: 'SEC'}
+  .row#diligence
+  .row#SEC
 
 

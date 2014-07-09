@@ -1,6 +1,6 @@
-.row{id: 'snippets-container', 'ng-controller' => 'snippets_controller'}
-  %h3= 'Snippets'
+.row{ id: 'snippets-container', 'ng-controller' => 'snippets_controller' }
+  %h3= 'Conversations'
   %ul.no-style
-    %li.info-snippet{'ng-repeat' => 'i in info_snippets'}
-      %a{:'ng-click' => "select_snippet(i.id)"}= "{{i.text}}"
+    %li.info-snippet{ 'ng-repeat' => 'i in info_snippets' }
+      %a{ :'ng-click' => "select_snippet(i.id)" }= "{{i.text}}"
 
