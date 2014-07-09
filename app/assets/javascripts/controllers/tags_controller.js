@@ -25,7 +25,7 @@ function tags_controller($scope, $location, ajax_service, communication_service)
   }
 
   $scope.select_tag = function(tag_id){
-    communication_service.setTagId(tag_id)
+    communication_service.setId('tag', tag_id)
   }
 
   $scope.$watch(

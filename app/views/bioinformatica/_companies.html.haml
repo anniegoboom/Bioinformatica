@@ -1,18 +1,22 @@
 .container.span12{:'ng-controller' => 'company_controller'}
   .container#companies-list{:'ng-show' => '!one_company'}
+    %h3= 'All Companies'
+    %ul.no-style
+      .li{:'ng-repeat' => 'c in companies'}
+        %a{:'ng-click' => "select_company(c.id)"}= "{{c.name}}"
   .container#company-description{:'ng-show' => 'one_company'}
-    %h1= "{{company.name}}"
+    %h1= "{{one_company.name}}"
     .row#financials
       %h3= 'Financials'
       %ul.no-style
-        %li= "Price: {{company.price}}"
-        %li= "52-week high: {{company.52high}}"
-        %li= "52-week low: {{company.52low}}"
-        %li= "Cash: {{company.cash}}"
-        %li= "Market Cap: {{company.market_cap}}"
-        %li= "Shares Out: {{company.shares}}"
-        %li= "Burn: {{company.burn}}"
-        %li= "Runway: {{company.runway}}"
+        %li= "Price: {{one_company.financials.price}}"
+        %li= "52-week high: {{one_company.financials.f52high}}"
+        %li= "52-week low: {{one_company.financials.financials52low}}"
+        %li= "Cash: {{one_company.financials.cash}}"
+        %li= "Market Cap: {{one_company.financials.market_cap}}"
+        %li= "Shares Out: {{one_company.financials.shares}}"
+        %li= "Burn: {{one_company.financials.burn}}"
+        %li= "Runway: {{one_company.financials.runway}}"
     .row#timeline
       %h3= 'Timeline'
       %ul.no-style

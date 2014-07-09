@@ -9,7 +9,7 @@ value('CONST',{
       'tags_by_snippet_id' : '/info_snippets/{0}/tags',
       'tag_type_by_id' : '/tag_types/{0}',
       'get_all_companies' : '/companies',
-      'company_by_id' : '/company/{0}'
+      'company_by_id' : '/companies/{0}'
   }
 }).
 factory('ajax_service', ['CONST', '$http', 'url_formatter', function(CONST, $http, url_formatter){
@@ -114,32 +114,12 @@ factory('communication_service', ['$location', function($location){
     else $location.path(type+'='+id);
   }
 
-  communication_service.showAllCompanies = function(){
-    communication_service.updateURL('company')
+  communication_service.showAll = function(type){
+    communication_service.updateURL(type)
   }
 
-  communication_service.setCompanyId = function(id){
-    communication_service.updateURL('company', id)
-  }
-
-  communication_service.showAllDrugs = function(){
-    communication_service.updateURL('drug')
-  }
-
-  communication_service.setDrugId = function(id){
-    communication_service.updateURL('drug', id)
-  }
-
-  communication_service.showAllSnippets = function(){
-    communication_service.updateURL('snippet')
-  }
-
-  communication_service.setSnippetId = function(id){
-    communication_service.updateURL('snippet', id)
-  }
-
-  communication_service.setTagId = function(id){
-    communication_service.updateURL('tag', id)
+  communication_service.setId = function(type, id){
+    communication_service.updateURL(type, id)
   }
 
   return communication_service

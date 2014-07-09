@@ -14,30 +14,32 @@ class CompaniesController < ApplicationController
 
   def show
     company = Company.find_by_id(params[:id])
-    programs = company.programs
-    timeline_snippets = company.info_snippets.by_date
-    diligence_snippets = company.info_snippets
-    financials =
-      {
-        price = company.price,
-        52high = company[:'52_week_high'],
-        52low = company[:'52_week_low'],
-        cash = company.cash,
-        market_cap = company.market_cap,
-        shares_out = company.shares_out,
-        burn = company.burn,
-        runway = company.runway
-      }
-    @company_hash =
-      [{
-        id: company.id,
-        name: company.name,
-        programs: programs,
-        financials: financials,
-        timeline_snippets: timeline_snippets,
-        diligence_snippets: diligence_snippets
-        }]
-    render_json
+    if company.present?
+      programs = company.programs
+      timeline_snippets = company.info_snippets.by_date
+      diligence_snippets = company.info_snippets
+      financials =
+        {
+          price: company.price,
+          f52high: company[:'52_week_high'],
+          f52low: company[:'52_week_low'],
+          cash: company.cash,
+          market_cap: company.market_cap,
+          shares_out: company.shares_out,
+          burn: company.burn,
+          runway: company.runway
+        }
+      @company_hash =
+        [{
+          id: company.id,
+          name: company.name,
+          programs: programs,
+          financials: financials,
+          timeline_snippets: timeline_snippets,
+          diligence_snippets: diligence_snippets
+          }]
+      render_json
+    end
   end
 
   private

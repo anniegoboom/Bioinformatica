@@ -20,7 +20,7 @@ function snippets_controller($scope, $location, ajax_service, communication_serv
   }
 
   $scope.select_snippet = function(snippet_id){
-    communication_service.setSnippetId(snippet_id)
+    communication_service.setId('snippet', snippet_id)
   }
 
   $scope.$watch(
