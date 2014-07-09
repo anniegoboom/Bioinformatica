@@ -91,7 +91,7 @@ factory('communication_service', ['$location', function($location){
   }
 
   communication_service.showAllCompanies = function(){
-    communication_service.updateURL(null)
+    communication_service.updateURL('company')
   }
 
   communication_service.setCompanyId = function(id){
@@ -99,7 +99,7 @@ factory('communication_service', ['$location', function($location){
   }
 
   communication_service.showAllDrugs = function(){
-    communication_service.updateURL('drugs')
+    communication_service.updateURL('drug')
   }
 
   communication_service.setDrugId = function(id){
@@ -107,7 +107,7 @@ factory('communication_service', ['$location', function($location){
   }
 
   communication_service.showAllSnippets = function(){
-    communication_service.updateURL('snippets')
+    communication_service.updateURL('snippet')
   }
 
   communication_service.setSnippetId = function(id){
