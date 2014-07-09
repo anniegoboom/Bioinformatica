@@ -1,12 +1,12 @@
-.content{'ng-app' => 'app'}
+.content{:'ng-app' => 'app'}
   = render :partial => 'nav'
-  .container#bioinformatica-main{ 'ng-controller' => 'bioinformatica_controller' }
-    #stuff{ 'ng-switch' => 'type' }
-      #companies{ 'ng-switch-when' => 'company' }
+  .container#bioinformatica-main{:'ng-controller' => 'bioinformatica_controller'}
+    #stuff{:'ng-switch' => 'type'}
+      #companies{:'ng-switch-when' => 'company'}
         = render :partial => 'companies'
-      #programs{ 'ng-switch-when' => 'drug' }
+      #programs{:'ng-switch-when' => 'drug'}
         = render :partial => 'programs'
-      .conversations{ 'ng-switch-when' => 'snippet' }
+      .conversations{:'ng-switch-when' => 'snippet'}
         = render :partial => 'conversations'
-      .conversations{ 'ng-switch-when' => 'tag' }
+      .conversations{:'ng-switch-when' => 'tag'}
         = render :partial => 'conversations'

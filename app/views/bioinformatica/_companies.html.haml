@@ -1,6 +1,6 @@
-.container.span12{ 'ng-controller' => 'company_controller' }
-  .container#companies-list{'ng-show' => '!one_company'}
-  .container#company-description{'ng-show' => 'one_company'}
+.container.span12{:'ng-controller' => 'company_controller'}
+  .container#companies-list{:'ng-show' => '!one_company'}
+  .container#company-description{:'ng-show' => 'one_company'}
     %h1= "{{company.name}}"
     .row#financials
       %h3= 'Financials'
