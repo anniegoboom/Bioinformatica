@@ -1,11 +1,23 @@
 @import 'variables'
 
-.nav
+#nav
   position: fixed
   border-bottom: 1px solid
+  padding: $stdPadding * 0.5
   height: 20px
   width: 100%
   text-align: center
   background-color: $white
   z-index: 100
 
+  a
+    color: $black
+    border: 1px solid $white
+    margin: $stdMargin * 0.5
+    padding: $stdPadding * 0.3
+
+  a:hover
+    border: 1px solid $gray
+    padding: $stdPadding * 0.3
+    color: $black
+    font-weight: 500

@@ -1,6 +1,5 @@
 .content{'ng-app' => 'app'}
-  .nav
-    = render :partial => 'nav'
+  = render :partial => 'nav'
   .container#bioinformatica-main{ 'ng-controller' => 'bioinformatica_controller' }
     #stuff{ 'ng-switch' => 'type' }
       #companies{ 'ng-switch-when' => 'company' }
