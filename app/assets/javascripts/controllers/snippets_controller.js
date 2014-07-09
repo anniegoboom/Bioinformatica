@@ -33,8 +33,8 @@ function snippets_controller($scope, $location, ajax_service, communication_serv
       urlString = $location.path().split('=')
       type = urlString[0]
       id = urlString[1]
-      if(type=='/tag') tag_id = id
-      if(type=='/snippet') snippet_id = id
+      if( type=='/tag' ) tag_id = id
+      if( type=='/snippet' ) snippet_id = id
 
       if(snippet_id == null && tag_id == null) get_all_snippets()
       else if(tag_id == null) get_snippet_by_id(snippet_id)

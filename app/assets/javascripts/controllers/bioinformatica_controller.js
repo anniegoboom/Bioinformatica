@@ -8,7 +8,7 @@ $scope.$watch(
     function(){
       urlString = $location.path().split('=')
       new_type = urlString[0].substr(1)
-      if(new_type != '') $scope.type = new_type
+      if(new_type != '' && new_type != $scope.type ) $scope.type = new_type
     },
     true
   )

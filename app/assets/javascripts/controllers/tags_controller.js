@@ -38,8 +38,8 @@ function tags_controller($scope, $location, ajax_service, communication_service)
       urlString = $location.path().split('=')
       type = urlString[0]
       id = urlString[1]
-      if(type=='/tag') tag_id = id
-      if(type=='/snippet') snippet_id = id
+      if( type=='/tag' ) tag_id = id
+      if( type=='/snippet' ) snippet_id = id
 
       if(snippet_id == null && tag_id == null) get_all_tags()
       else if(snippet_id == null) get_tag_by_id(tag_id)

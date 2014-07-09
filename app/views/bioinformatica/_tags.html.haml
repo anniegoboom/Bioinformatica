@@ -1,6 +1,6 @@
 .row{id: 'tags-container', 'ng-controller' => 'tags_controller'}
   %h3= 'Tags'
-  .tags-nav{'ng-show' => '!one_tag'}
+  .tags-nav#tags-list{'ng-show' => '!one_tag'}
     %ul.no-style
       %li{'ng-repeat' => '(type, t) in tags'}
         .type{'ng-hide' => "t.length == 0"}
@@ -8,7 +8,7 @@
           %ul.no-style
             %li.tag{'ng-repeat' => 'tag in t'}
               %a{:'ng-click' => "select_tag(tag.id)"}= "{{tag.name}}"
-  .tags-nav{'ng-show' => 'one_tag'}
+  .tags-nav#one-tag{'ng-show' => 'one_tag'}
     .type
       %h5= "{{one_tag.type}}"
       .tag

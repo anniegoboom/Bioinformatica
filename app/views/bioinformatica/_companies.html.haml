@@ -1,20 +1,25 @@
 .container.span12{ 'ng-controller' => 'company_controller' }
-  .row#financials
-    %h3= 'Financials'
-    %ul.no-style
-      %li= "Price: {{company.price}}"
-      %li= "52-week high: {{company.52high}}"
-      %li= "52-week low: {{company.52low}}"
-      %li= "Cash: {{company.cash}}"
-      %li= "Market Cap: {{company.market_cap}}"
-      %li= "Shares Out: {{company.shares}}"
-      %li= "Burn: {{company.burn}}"
-      %li= "Runway: {{company.runway}}"
-  .row#timeline
-    %h3= 'Timeline'
-    %ul.no-style
-      %li
-  .row#diligence
-  .row#SEC
+  .container#companies-list{'ng-show' => '!one_company'}
+  .container#company-description{'ng-show' => 'one_company'}
+    %h1= "{{company.name}}"
+    .row#financials
+      %h3= 'Financials'
+      %ul.no-style
+        %li= "Price: {{company.price}}"
+        %li= "52-week high: {{company.52high}}"
+        %li= "52-week low: {{company.52low}}"
+        %li= "Cash: {{company.cash}}"
+        %li= "Market Cap: {{company.market_cap}}"
+        %li= "Shares Out: {{company.shares}}"
+        %li= "Burn: {{company.burn}}"
+        %li= "Runway: {{company.runway}}"
+    .row#timeline
+      %h3= 'Timeline'
+      %ul.no-style
+        %li
+    .row#diligence
+      %h3= 'Diligence'
+    .row#SEC
+      %h3= 'SEC Filings'
 
 
