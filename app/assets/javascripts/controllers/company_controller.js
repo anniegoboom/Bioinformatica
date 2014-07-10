@@ -8,6 +8,7 @@ function company_controller($scope, ajax_service, $location, communication_servi
       $scope.one_company = null
     })
   }
+  get_all_companies()
 
   get_company_by_id = function(company_id){
     ajax_service.get_company_by_id(company_id, function(status, data){

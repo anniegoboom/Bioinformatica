@@ -33,6 +33,7 @@ class CompaniesController < ApplicationController
         [{
           id: company.id,
           name: company.name,
+          ticker: company.ticker,
           programs: programs,
           financials: financials,
           timeline_snippets: timeline_snippets,

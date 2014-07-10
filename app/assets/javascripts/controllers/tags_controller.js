@@ -9,8 +9,6 @@ function tags_controller($scope, $location, ajax_service, communication_service)
     })
   }
 
-  // get_all_tags()
-
   get_tag_by_id = function(tag_id){
     ajax_service.get_tag_by_id(tag_id, function(status, data){
       $scope.one_tag = data[0]
