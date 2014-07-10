@@ -32,7 +32,8 @@ function snippets_controller($scope, $location, ajax_service, communication_serv
       type = urlString[0]
       id = urlString[1]
 
-      if( id != undefined ) get_snippet_by_id(id)
+      if( type == '/tag' ) get_snippets_by_tag_id(id)
+      else if( id != undefined ) get_snippet_by_id(id)
       else get_all_snippets()
     },
     true

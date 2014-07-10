@@ -16,11 +16,19 @@ function programs_controller($scope, ajax_service, $location, communication_serv
     })
   }
 
-  get_programs_by_company = function(program_id){
+  get_programs_by_tag_id = function(tag_id){
+    ajax_service.get_drugs_by_tag_id(tag_id, function(status, data){
+      $scope.programs = data
+      $scope.one_program = null
+    })
   }
 
   $scope.select_program = function(program_id){
     communication_service.setId('drug', program_id)
+  }
+
+  $scope.select_company = function(company_id){
+    communication_service.setId('company', company_id)
   }
 
   $scope.select_all = function(){
@@ -36,7 +44,8 @@ function programs_controller($scope, ajax_service, $location, communication_serv
       type = urlString[0]
       id = urlString[1]
 
-      if( id != undefined ) get_program_by_id(id)
+      if( type == '/tag' ) get_programs_by_tag_id(id)
+      else if( id != undefined ) get_program_by_id(id)
       else get_all_programs()
     },
     true

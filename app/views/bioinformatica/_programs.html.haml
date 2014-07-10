@@ -1,8 +1,21 @@
-.span8#programs-container{:'ng-controller' => 'programs_controller'}
+#programs-container{:'ng-controller' => 'programs_controller'}
   .container#programs-list{:'ng-show' => '!one_program'}
-    %h3= 'All Programs'
-    %ul.no-style
-      %li.program{:'ng-repeat' => 'p in programs'}
-        %a{:'ng-click' => "select_program(p.id)"}= "{{p.name}}"
+    .row.header
+      %h3= 'All Programs'
+    .row.list
+      %ul.no-style
+        %li.program{:'ng-repeat' => 'p in programs'}
+          %a{:'ng-click' => "select_program(p.id)"}= "{{p.name}}"
   .container#one-program{:'ng-show' => 'one_program'}
-    %h3='{{one_program.name}}'
+    .row.header
+      %h3='{{one_program.name}}'
+      %p='{{one_program.description}}'
+    .row.companies
+      %h3= 'Companies'
+      %ul.no-style
+        %li.company{:'ng-repeat' => 'c in one_program.companies'}
+          %a{:'ng-click' => 'select_company(c.id)'}="{{c.name}}"
+    .row.timeline-snippets
+
+    .row.back
+      %a{:'ng-click' => 'select_all()'}= '<-- Back to All Programs'

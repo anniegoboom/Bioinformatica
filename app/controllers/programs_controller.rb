@@ -21,12 +21,11 @@ class ProgramsController < ApplicationController
       }
     end
     timeline_snippets = program.info_snippets.by_date
-    tags = program.tags
     @program_hash =
       [{
         id: program.id,
         name: program.name,
-        tags: tags,
+        description: program.description,
         timeline_snippets: timeline_snippets,
         companies: companies
         }]

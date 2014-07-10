@@ -5,12 +5,18 @@
       #companies{:'ng-switch-when' => 'company'}
         = render :partial => 'companies'
       #programs{:'ng-switch-when' => 'drug'}
-        = render :partial => 'tags'
-        = render :partial => 'programs'
+        .container.span3
+          = render :partial => 'tags'
+        .container.span8
+          = render :partial => 'programs'
       #conversations{:'ng-switch-when' => 'snippet'}
-        = render :partial => 'tags'
-        = render :partial => 'snippets'
+        .container.span3
+          = render :partial => 'tags'
+        .container.span8
+          = render :partial => 'snippets'
       #tag{:'ng-switch-when' => 'tag'}
-        = render :partial => 'tags'
-        = render :partial => 'programs'
-        = render :partial => 'snippets'
+        .container.span3
+          = render :partial => 'tags'
+        .container.span8
+          = render :partial => 'programs'
+          = render :partial => 'snippets'

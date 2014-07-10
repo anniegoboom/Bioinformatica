@@ -8,6 +8,7 @@ value('CONST',{
       'snippets_by_tag_id' : '/tags/{0}/info_snippets',
       'tags_by_snippet_id' : '/info_snippets/{0}/tags',
       'tags_by_drug_id' : '/programs/{0}/tags',
+      'drugs_by_tag_id' : '/tags/{0}/programs',
       'tag_type_by_id' : '/tag_types/{0}',
       'get_all_companies' : '/companies',
       'company_by_id' : '/companies/{0}',
@@ -86,6 +87,17 @@ factory('ajax_service', ['CONST', '$http', 'url_formatter', function(CONST, $htt
 
   ajax_service.get_tags_by_drug_id = function(drug_id, callback){
     var url = url_formatter.format(CONST.Urls.tags_by_drug_id, drug_id);
+    $http.get(url)
+      .success(function(data, status) {
+        callback(status, data);
+      })
+      .error(function(data, status) {
+        //TODO: Show Error
+      });
+  }
+
+  ajax_service.get_drugs_by_tag_id = function(tag_id, callback){
+    var url = url_formatter.format(CONST.Urls.drugs_by_tag_id, tag_id);
     $http.get(url)
       .success(function(data, status) {
         callback(status, data);
