@@ -28,6 +28,10 @@ function company_controller($scope, ajax_service, $location, communication_servi
     communication_service.showAll('company')
   }
 
+  $scope.select_snippet = function(snippet_id){
+    communication_service.setId('snippet', snippet_id)
+  }
+
   $scope.$watch(
     function(){
       return $location.path();

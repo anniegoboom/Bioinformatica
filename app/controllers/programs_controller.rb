@@ -20,7 +20,7 @@ class ProgramsController < ApplicationController
         name: c.name
       }
     end
-    timeline_snippets = program.info_snippets.by_date
+    timeline_snippets = program.info_snippets.by_date_r
     @program_hash =
       [{
         id: program.id,

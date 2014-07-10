@@ -4,7 +4,7 @@
     %ul.no-style
       %li{:'ng-repeat' => '(type, t) in tags'}
         .type{:'ng-hide' => "t.length == 0"}
-          %h5= "{{type}}".pluralize
+          %h5= "{{type}}"
           %ul.no-style
             %li.tag{:'ng-repeat' => 'tag in t'}
               %a{:'ng-click' => "select_tag(tag.id)"}= "{{tag.name}}"

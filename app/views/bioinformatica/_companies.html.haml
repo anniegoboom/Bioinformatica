@@ -7,7 +7,7 @@
           .span{:'ng-show' => "c.ticker"}= "[ {{c.ticker}} ]"
           = "{{c.name}}"
   .container#company-description{:'ng-show' => 'one_company'}
-    %a{:'ng-click' => 'select_all()'}= '<-- Back'
+    %a{:'ng-click' => 'select_all()'}= '<-- Back to All Companies'
     %h1= "{{one_company.name}} ({{one_company.ticker}})"
     .span3#company-financials
       %h3= 'Financials'
@@ -52,8 +52,11 @@
             %td="{{p.description}}"
       .row#timeline
         %h3= 'Timeline'
-        %ul.no-style
-          %li
+        %table
+          %tr.snippet{:'ng-repeat' => 's in one_company.timeline_snippets'}
+            %td.date= "{{s.event_date}}"
+            %td.catalyst
+              %a{:'ng-click' => 'select_snippet(s.id)'}= "{{s.text}}"
       .row#diligence
         %h3= 'Diligence'
       .row#SEC

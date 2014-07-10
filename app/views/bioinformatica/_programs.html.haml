@@ -1,7 +1,7 @@
 #programs-container{:'ng-controller' => 'programs_controller'}
   .container#programs-list{:'ng-show' => '!one_program'}
     .row.header
-      %h3= 'All Programs'
+      %h3= 'Programs'
     .row.list
       %ul.no-style
         %li.program{:'ng-repeat' => 'p in programs'}
@@ -16,6 +16,12 @@
         %li.company{:'ng-repeat' => 'c in one_program.companies'}
           %a{:'ng-click' => 'select_company(c.id)'}="{{c.name}}"
     .row.timeline-snippets
+      %h3= 'Timeline'
+      %table
+        %tr.snippet{:'ng-repeat' => 's in one_program.timeline_snippets'}
+          %td.date= "{{s.event_date}}"
+          %td.catalyst
+            %a{:'ng-click' => 'select_snippet(s.id)'}= "{{s.text}}"
 
     .row.back
       %a{:'ng-click' => 'select_all()'}= '<-- Back to All Programs'

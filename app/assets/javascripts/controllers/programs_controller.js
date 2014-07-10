@@ -31,6 +31,10 @@ function programs_controller($scope, ajax_service, $location, communication_serv
     communication_service.setId('company', company_id)
   }
 
+  $scope.select_snippet = function(snippet_id){
+    communication_service.setId('snippet', snippet_id)
+  }
+
   $scope.select_all = function(){
     communication_service.showAll('drug')
   }

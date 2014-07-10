@@ -6,4 +6,5 @@
         %a{:'ng-click' => "select_snippet(i.id)"}
           .subject{:'ng-show' => 'i.subject'}= "{{i.subject}}"
           = "{{i.text}}"
+          .event-date{:'ng-show' => 'i.event_date'}= "Date: {{i.event_date}}"
 

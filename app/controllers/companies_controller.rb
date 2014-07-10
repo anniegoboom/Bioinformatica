@@ -17,7 +17,7 @@ class CompaniesController < ApplicationController
     company = Company.find_by_id(params[:id])
     if company.present?
       programs = company.programs
-      timeline_snippets = company.info_snippets.by_date
+      timeline_snippets = company.info_snippets.by_date_r
       diligence_snippets = company.info_snippets
       @financials =
         {

@@ -11,7 +11,7 @@ class InfoSnippet < ActiveRecord::Base
   scope :by_date_r, order('event_date ASC')
   scope :by_update_date, order('updated_at DESC')
 
-  attr_accessible :text, :tag_ids, :program_ids, :company_ids
+  attr_accessible :text, :subject, :tag_ids, :program_ids, :company_ids, :event_date
 
   def to_s
     self.text
