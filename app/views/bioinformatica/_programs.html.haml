@@ -1,6 +1,6 @@
 .span8#programs-container{:'ng-controller' => 'programs_controller'}
   .container#programs-list{:'ng-show' => '!one_program'}
-    %h3= 'Programs'
+    %h3= 'All Programs'
     %ul.no-style
       %li.program{:'ng-repeat' => 'p in programs'}
         %a{:'ng-click' => "select_program(p.id)"}= "{{p.name}}"

@@ -6,7 +6,8 @@ class CompaniesController < ApplicationController
     @company_hash = companies.map do |c|
       {
         id: c.id,
-        name: c.name
+        name: c.name,
+        ticker: c.ticker
       }
     end
     render_json

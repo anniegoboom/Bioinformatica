@@ -20,6 +20,10 @@ function company_controller($scope, ajax_service, $location, communication_servi
     communication_service.setId('company', company_id)
   }
 
+  $scope.select_program = function(program_id){
+    communication_service.setId('drug', program_id)
+  }
+
   $scope.select_all = function(){
     communication_service.showAll('company')
   }

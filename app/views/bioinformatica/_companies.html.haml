@@ -3,7 +3,9 @@
     %h3= 'All Companies'
     %ul.no-style
       .li{:'ng-repeat' => 'c in companies'}
-        %a{:'ng-click' => "select_company(c.id)"}= "{{c.name}}"
+        %a{:'ng-click' => "select_company(c.id)"}
+          .span{:'ng-show' => "c.ticker"}= "[ {{c.ticker}} ]"
+          = "{{c.name}}"
   .container#company-description{:'ng-show' => 'one_company'}
     %a{:'ng-click' => 'select_all()'}= '<-- Back'
     %h1= "{{one_company.name}} ({{one_company.ticker}})"
