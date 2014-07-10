@@ -17,19 +17,19 @@ class InfoSnippetsController < ApplicationController
 
   def show
     snippet = InfoSnippet.find_by_id(params[:id])
-    tags = snippet.tags.map do |tag|
-      {
-        id: tag.id,
-        name: tag.name,
-        type: tag.tag_type.name,
-        type_id: tag.tag_type.id,
-      }
-    end
+    # tags = snippet.tags.map do |tag|
+    #   {
+    #     id: tag.id,
+    #     name: tag.name,
+    #     type: tag.tag_type.name,
+    #     type_id: tag.tag_type.id,
+    #   }
+    # end
     @info_hash =
       [{
         id: snippet.id,
         text: snippet.text,
-        tags: tags,
+        # tags: tags,
         created_at: snippet.created_at,
         updated_at: snippet.updated_at
       }]
