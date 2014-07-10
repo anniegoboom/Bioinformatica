@@ -18,24 +18,30 @@ class CompaniesController < ApplicationController
       programs = company.programs
       timeline_snippets = company.info_snippets.by_date
       diligence_snippets = company.info_snippets
-      financials =
+      @financials =
         {
           price: company.price,
           f52high: company[:'52_week_high'],
           f52low: company[:'52_week_low'],
           cash: company.cash,
-          market_cap: company.market_cap,
           shares_out: company.shares_out,
+          three_month_volume: company.three_month_volume,
           burn: company.burn,
           runway: company.runway
         }
+
+      add_calculated_financial(:market_cap, company.price, company.shares_out)
+      add_calculated_financial(:three_month_dollar_volume, company.price, company.three_month_volume)
+
+      add_commas_to_large_numbers_in_financials
+
       @company_hash =
         [{
           id: company.id,
           name: company.name,
           ticker: company.ticker,
           programs: programs,
-          financials: financials,
+          financials: @financials,
           timeline_snippets: timeline_snippets,
           diligence_snippets: diligence_snippets
           }]
@@ -44,6 +50,18 @@ class CompaniesController < ApplicationController
   end
 
   private
+
+  def add_commas_to_large_numbers_in_financials
+    @financials.each {|k,v| @financials[k] = add_commas_to_large_number(v) }
+  end
+
+  def add_commas_to_large_number(number)
+    number_with_delimiter(number) if number.present?
+  end
+
+  def add_calculated_financial(symbol, first_item, second_item)
+    @financials = @financials.merge({ symbol => first_item * second_item}) if first_item.present? && second_item.present?
+  end
 
   def render_json
     render :json => @company_hash
