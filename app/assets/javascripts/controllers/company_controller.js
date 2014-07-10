@@ -2,7 +2,7 @@ function company_controller($scope, ajax_service, $location, communication_servi
   $scope.companies = {}
   $scope.one_company = null
 
-  $scope.get_all_companies = function(){
+  get_all_companies = function(){
     ajax_service.get_all_companies(function(status, data){
       $scope.companies = data
       $scope.one_company = null
@@ -20,6 +20,10 @@ function company_controller($scope, ajax_service, $location, communication_servi
     communication_service.setId('company', company_id)
   }
 
+  $scope.select_all = function(){
+    communication_service.showAll('company')
+  }
+
   $scope.$watch(
     function(){
       return $location.path();
@@ -33,7 +37,7 @@ function company_controller($scope, ajax_service, $location, communication_servi
 
       company_id = id
       if(company_id != undefined) get_company_by_id(company_id)
-      else $scope.get_all_companies()
+      else get_all_companies()
     },
     true
   )
