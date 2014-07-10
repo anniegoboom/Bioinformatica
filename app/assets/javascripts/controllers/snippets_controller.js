@@ -28,17 +28,12 @@ function snippets_controller($scope, $location, ajax_service, communication_serv
       return $location.path();
     },
     function(){
-      tag_id = null
-      snippet_id = null
       urlString = $location.path().split('=')
       type = urlString[0]
       id = urlString[1]
-      if( type=='/tag' ) tag_id = id
-      if( type=='/snippet' ) snippet_id = id
 
-      if(snippet_id == null && tag_id == null) get_all_snippets()
-      else if(tag_id == null) get_snippet_by_id(snippet_id)
-      else get_snippets_by_tag_id(tag_id)
+      if( id != undefined ) get_snippet_by_id(id)
+      else get_all_snippets()
     },
     true
   )

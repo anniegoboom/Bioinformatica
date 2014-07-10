@@ -22,6 +22,13 @@ function tags_controller($scope, $location, ajax_service, communication_service)
     })
   }
 
+  get_tags_by_drug_id = function(drug_id){
+    ajax_service.get_tags_by_drug_id(drug_id, function(status, data){
+      $scope.tags = data
+      $scope.one_tag = null
+    })
+  }
+
   $scope.select_tag = function(tag_id){
     communication_service.setId('tag', tag_id)
   }
@@ -31,17 +38,14 @@ function tags_controller($scope, $location, ajax_service, communication_service)
       return $location.path();
     },
     function(){
-      tag_id = null
-      snippet_id = null
       urlString = $location.path().split('=')
       type = urlString[0]
       id = urlString[1]
-      if( type=='/tag' ) tag_id = id
-      if( type=='/snippet' ) snippet_id = id
 
-      if(snippet_id == null && tag_id == null) get_all_tags()
-      else if(snippet_id == null) get_tag_by_id(tag_id)
-      else get_tags_by_snippet_id(snippet_id)
+      if( type=='/tag' && id != undefined )  get_tag_by_id(id)
+      else if( type=='/drug' && id != undefined ) get_tags_by_drug_id(id)
+      else if( type=='/snippet' && id != undefined ) get_tags_by_snippet_id(id)
+      else get_all_tags()
     },
     true
   )

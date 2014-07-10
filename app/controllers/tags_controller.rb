@@ -3,7 +3,13 @@ class TagsController < ApplicationController
   respond_to :json
 
   def index
-    tags = params["info_snippet_id"].present? ? InfoSnippet.find_by_id(params["info_snippet_id"]).tags : Tag.all
+    tags =  if params["info_snippet_id"].present?
+              InfoSnippet.find_by_id(params["info_snippet_id"]).tags
+            elsif params["program_id"].present?
+              Program.find_by_id(params["program_id"]).tags
+            else
+              Tag.all
+            end
     @tag_hash = {}
 
     TagType.all.each do |type|

@@ -29,14 +29,11 @@ function company_controller($scope, ajax_service, $location, communication_servi
       return $location.path();
     },
     function(){
-      tag_id = null
-      snippet_id = null
       urlString = $location.path().split('=')
       type = urlString[0]
       id = urlString[1]
 
-      company_id = id
-      if(company_id != undefined) get_company_by_id(company_id)
+      if( id != undefined ) get_company_by_id(id)
       else get_all_companies()
     },
     true

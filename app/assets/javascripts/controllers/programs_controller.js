@@ -12,7 +12,7 @@ function programs_controller($scope, ajax_service, $location, communication_serv
   get_program_by_id = function(program_id){
     ajax_service.get_program_by_id(program_id, function(status, data){
       $scope.programs = null
-      $scope.one_program = data
+      $scope.one_program = data[0]
     })
   }
 
@@ -20,11 +20,11 @@ function programs_controller($scope, ajax_service, $location, communication_serv
   }
 
   $scope.select_program = function(program_id){
-    communication_service.setId('program', program_id)
+    communication_service.setId('drug', program_id)
   }
 
   $scope.select_all = function(){
-    communication_service.showAll('program')
+    communication_service.showAll('drug')
   }
 
   $scope.$watch(
@@ -32,19 +32,15 @@ function programs_controller($scope, ajax_service, $location, communication_serv
       return $location.path();
     },
     function(){
-      tag_id = null
-      snippet_id = null
       urlString = $location.path().split('=')
       type = urlString[0]
       id = urlString[1]
 
-      program_id = id
-      if(program_id != undefined) get_program_by_id(program_id)
+      if( id != undefined ) get_program_by_id(id)
       else get_all_programs()
     },
     true
   )
 
-
 }
-company_controller.$inject = ['$scope', 'ajax_service', '$location', 'communication_service']
+programs_controller.$inject = ['$scope', 'ajax_service', '$location', 'communication_service']

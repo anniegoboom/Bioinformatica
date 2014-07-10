@@ -2,7 +2,7 @@ class ProgramsController < ApplicationController
   respond_to :json
 
   def index
-    programs = Program.by_name
+    programs = params["tag_id"].present? ? Tag.find_by_id(params["tag_id"]).programs.by_name : Program.by_name
     @program_hash = programs.map do |p|
       {
         id: p.id,
