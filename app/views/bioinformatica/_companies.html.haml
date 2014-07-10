@@ -7,7 +7,7 @@
   .container#company-description{:'ng-show' => 'one_company'}
     %a{:'ng-click' => 'select_all()'}= '<-- Back'
     %h1= "{{one_company.name}} ({{one_company.ticker}})"
-    .row#financials
+    .span3#company-financials
       %h3= 'Financials'
       %ul.no-style
         %li= "Price: $ {{one_company.financials.price}}"
@@ -20,13 +20,16 @@
         %li= "3 Month Average Daily $ Volume: $ {{one_company.financials.three_month_dollar_volume}} "
         %li= "Burn: $ {{one_company.financials.burn}}"
         %li= "Runway: {{one_company.financials.runway}}"
-    .row#timeline
-      %h3= 'Timeline'
-      %ul.no-style
-        %li
-    .row#diligence
-      %h3= 'Diligence'
-    .row#SEC
-      %h3= 'SEC Filings'
+    .span8#company-details
+      .row#product-pipeline
+        %h3= 'Product Pipeline'
+      .row#timeline
+        %h3= 'Timeline'
+        %ul.no-style
+          %li
+      .row#diligence
+        %h3= 'Diligence'
+      .row#SEC
+        %h3= 'SEC Filings'
 
 

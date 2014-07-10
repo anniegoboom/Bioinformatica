@@ -1,3 +1,8 @@
-.container.span12
-  .row#tital
+.container
+  .span3#tags
+    = render :partial => 'tags'
+  .span8#programs-container{:'ng-controller' => 'programs_controller'}
     %h3= 'Programs'
+    %ul.no-style
+      %li.program{:'ng-repeat' => 'p in programs'}
+        %a{:'ng-click' => "select_program(p.id)"}= "{{p.name}} : {{p.description}}"

@@ -9,7 +9,9 @@ value('CONST',{
       'tags_by_snippet_id' : '/info_snippets/{0}/tags',
       'tag_type_by_id' : '/tag_types/{0}',
       'get_all_companies' : '/companies',
-      'company_by_id' : '/companies/{0}'
+      'company_by_id' : '/companies/{0}',
+      'get_all_programs' : '/programs',
+      'program_by_id' : '/programs/{0}'
   }
 }).
 factory('ajax_service', ['CONST', '$http', 'url_formatter', function(CONST, $http, url_formatter){
@@ -94,6 +96,28 @@ factory('ajax_service', ['CONST', '$http', 'url_formatter', function(CONST, $htt
 
   ajax_service.get_company_by_id = function(company_id, callback){
     var url = url_formatter.format(CONST.Urls.company_by_id, company_id);
+    $http.get(url)
+      .success(function(data, status) {
+        callback(status, data);
+      })
+      .error(function(data, status) {
+        //TODO: Show Error
+      });
+  }
+
+  ajax_service.get_all_programs = function(callback){
+    var url = CONST.Urls.get_all_programs;
+    $http.get(url)
+      .success(function(data, status) {
+        callback(status, data);
+      })
+      .error(function(data, status) {
+        //TODO: Show Error
+      });
+  }
+
+  ajax_service.get_program_by_id = function(program_id, callback){
+    var url = url_formatter.format(CONST.Urls.program_by_id, program_id);
     $http.get(url)
       .success(function(data, status) {
         callback(status, data);

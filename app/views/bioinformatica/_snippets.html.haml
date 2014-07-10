@@ -1,4 +1,4 @@
-.row{id: 'snippets-container', :'ng-controller' => 'snippets_controller'}
+.row#snippets-container{:'ng-controller' => 'snippets_controller'}
   %h3= 'Conversations'
   %ul.no-style
     %li.info-snippet{:'ng-repeat' => 'i in info_snippets'}
