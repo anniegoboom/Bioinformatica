@@ -16,9 +16,6 @@ class CompaniesController < ApplicationController
   def show
     company = Company.find_by_id(params[:id])
     if company.present?
-      programs = company.programs
-      timeline_snippets = company.info_snippets.by_date_r
-      diligence_snippets = company.info_snippets
       @financials =
         {
           price: company.price,
@@ -28,13 +25,24 @@ class CompaniesController < ApplicationController
           shares_out: company.shares_out,
           three_month_volume: company.three_month_volume,
           burn: company.burn,
-          runway: company.runway
+          runway: company.runway,
+          debt_due: company.debt_due
         }
 
       add_calculated_financial(:market_cap, company.price, company.shares_out)
       add_calculated_financial(:three_month_dollar_volume, company.price, company.three_month_volume)
-
       add_commas_to_large_numbers_in_financials
+
+      programs = company.programs.map do |p|
+        {
+          id: p.id,
+          name: p.name,
+          description: p.description,
+          tags: p.tags
+        }
+      end
+      timeline_snippets = company.info_snippets.by_date_r
+      diligence_snippets = company.info_snippets
 
       @company_hash =
         [{

@@ -37,6 +37,9 @@
           = "3 Month Average Daily $ Volume:"
           .financial= "$ {{one_company.financials.three_month_dollar_volume}}"
         %li
+          = "Debt Due:"
+          .financial="$ {{one_company.financials.debt_due}}"
+        %li
           = "Burn:"
           .finacial= "{{one_company.financials.burn}}"
         %li
@@ -45,11 +48,19 @@
     .span8#company-details
       .row#product-pipeline
         %h3= 'Product Pipeline'
-        %table
-          %tr.program{:'ng-repeat' => 'p in one_company.programs'}
-            %td
+        %table{:'ng-repeat' => 'p in one_company.programs'}
+          %tr.program-description
+            %td.program-name
               %a{:'ng-click' => "select_program(p.id)"}= "{{p.name}}"
             %td="{{p.description}}"
+          %tr.program-tags
+            %td
+            %td
+              %table
+                %tr
+                  %td{:'ng-repeat' => 't in p.tags'}
+                    %a{:'ng-click' => "select_program(t.id)"}= "{{t.name}}"
+
       .row#timeline
         %h3= 'Timeline'
         %table
