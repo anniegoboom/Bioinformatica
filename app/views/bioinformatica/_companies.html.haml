@@ -23,6 +23,11 @@
     .span8#company-details
       .row#product-pipeline
         %h3= 'Product Pipeline'
+        %table
+          %tr.program{:'ng-repeat' => 'p in one_company.programs'}
+            %td
+              %a{:'ng-click' => "select_program(p.id)"}= "{{p.name}}"
+            %td="{{p.description}}"
       .row#timeline
         %h3= 'Timeline'
         %ul.no-style
