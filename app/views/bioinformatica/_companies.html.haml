@@ -59,7 +59,7 @@
               %table
                 %tr
                   %td{:'ng-repeat' => 't in p.tags'}
-                    %a{:'ng-click' => "select_program(t.id)"}= "{{t.name}}"
+                    %a{:'ng-click' => "select_tag(t.id)"}= "{{t.name}}"
 
       .row#timeline
         %h3= 'Timeline'

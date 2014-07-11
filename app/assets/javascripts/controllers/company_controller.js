@@ -32,6 +32,10 @@ function company_controller($scope, ajax_service, $location, communication_servi
     communication_service.setId('snippet', snippet_id)
   }
 
+  $scope.select_tag = function(tag_id){
+    communication_service.setId('tag', tag_id)
+  }
+
   $scope.$watch(
     function(){
       return $location.path();

@@ -10,11 +10,6 @@
     .row.header
       %h3='{{one_program.name}}'
       %p='{{one_program.description}}'
-    .row.companies
-      %h3= 'Companies'
-      %ul.no-style
-        %li.company{:'ng-repeat' => 'c in one_program.companies'}
-          %a{:'ng-click' => 'select_company(c.id)'}="{{c.name}}"
     .row.timeline-snippets
       %h3= 'Timeline'
       %table
@@ -22,6 +17,11 @@
           %td.date= "{{s.event_date}}"
           %td.catalyst
             %a{:'ng-click' => 'select_snippet(s.id)'}= "{{s.text}}"
+    .row.companies
+      %h3= 'Companies'
+      %ul.no-style
+        %li.company{:'ng-repeat' => 'c in one_program.companies'}
+          %a{:'ng-click' => 'select_company(c.id)'}="{{c.name}}"
 
     .row.back
       %a{:'ng-click' => 'select_all()'}= '<-- Back to All Programs'
