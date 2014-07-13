@@ -41,8 +41,10 @@ class CompaniesController < ApplicationController
           tags: p.tags
         }
       end
-      timeline_snippets = company.info_snippets.by_date_r
-      diligence_snippets = company.info_snippets
+
+      snippets = company.info_snippets.by_date_r
+      timeline_snippets = snippets.select {|s| s.event_date.present?}
+      diligence_snippets = snippets - timeline_snippets
 
       @company_hash =
         [{

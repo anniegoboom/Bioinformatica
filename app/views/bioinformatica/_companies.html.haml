@@ -69,6 +69,11 @@
               %a{:'ng-click' => 'select_snippet(s.id)'}= "{{s.text}}"
       .row#diligence
         %h3= 'Diligence'
+        %ul.no-style
+          %li.info-snippet{:'ng-repeat' => 'i in one_company.diligence_snippets'}
+            %a{:'ng-click' => "select_snippet(i.id)"}
+              .subject{:'ng-show' => 'i.subject'}= "{{i.subject}}"
+              = "{{i.text}}"
       .row#SEC
         %h3= 'SEC Filings'
 
