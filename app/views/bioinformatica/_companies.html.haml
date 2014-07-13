@@ -56,10 +56,9 @@
           %tr.program-tags
             %td
             %td
-              %table
-                %tr
-                  %td{:'ng-repeat' => 't in p.tags'}
-                    %a{:'ng-click' => "select_tag(t.id)"}= "{{t.name}}"
+              .tags-container
+                .tag{:'ng-repeat' => 't in p.tags'}
+                  %a{:'ng-click' => "select_tag(t.id)"}= "{{t.name}}"
 
       .row#timeline
         %h3= 'Timeline'
