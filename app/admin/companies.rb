@@ -6,6 +6,7 @@ ActiveAdmin.register Company do
 
   form do |f|
     f.inputs "Details" do
+      f.input :ticker
       f.input :name,  required: true
       f.input :price
       # f.input :'52_week_high'

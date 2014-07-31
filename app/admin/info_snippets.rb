@@ -14,6 +14,7 @@ ActiveAdmin.register InfoSnippet do
       f.input :text
       f.input :tags
       f.input :companies
+      f.input :event_date
     end
     f.actions
   end
