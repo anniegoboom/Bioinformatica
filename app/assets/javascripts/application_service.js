@@ -151,9 +151,20 @@ factory('ajax_service', ['CONST', '$http', 'url_formatter', function(CONST, $htt
       });
   }
 
+  ajax_service.destroy = function(type, id){
+    var url = '/'+type+'/'+id;
+    $http.delete(url)
+      .success(function(data, status) {
+        callback(status, data);
+      })
+      .error(function(data, status) {
+        //TODO: Show Error
+      });
+  }
+
   return ajax_service
 }]).
-factory('communication_service', ['$location', function($location){
+factory('communication_service', ['$location', 'ajax_service', function($location, ajax_service){
   var communication_service = {}
 
   communication_service.updateURL = function(type, id){
@@ -168,6 +179,15 @@ factory('communication_service', ['$location', function($location){
 
   communication_service.setId = function(type, id){
     communication_service.updateURL(type, id)
+  }
+
+  communication_service.edit = function(type, id){
+    window.location = '/'+type+'/'+id+'/edit'
+  }
+
+  communication_service.destroy = function(type, id){
+    ajax_service.destroy(type,id)
+    $location.path('/')
   }
 
   return communication_service

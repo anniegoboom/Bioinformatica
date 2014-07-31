@@ -21,7 +21,7 @@ Bioinformatica::Application.routes.draw do
     resources :tags, :only => [:index]
   end
 
-  resources :companies, :only => [:show, :index]
+  resources :companies
 
   root :to => 'bioinformatica#index'
 end

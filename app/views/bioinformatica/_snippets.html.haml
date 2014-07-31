@@ -5,6 +5,6 @@
       %li.info-snippet{:'ng-repeat' => 'i in info_snippets'}
         %a{:'ng-click' => "select_snippet(i.id)"}
           .subject{:'ng-show' => 'i.subject'}= "{{i.subject}}"
-          = "{{i.text}}"
+          =simple_format "{{i.text}}"
           .event-date{:'ng-show' => 'i.event_date'}= "Date: {{i.event_date}}"
 

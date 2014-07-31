@@ -60,6 +60,40 @@ class CompaniesController < ApplicationController
     end
   end
 
+  def new
+    @company = Company.new
+  end
+
+  def create
+    @company = Company.new(company_params)
+
+    if @company.save
+      redirect_to root_url
+    else
+      render :new
+    end
+  end
+
+  def edit
+    @company = Company.find(params[:id])
+  end
+
+  def update
+    company_id = params[:id]
+    @company = Company.find(company_id)
+
+    if @company.update_attributes(company_params)
+      redirect_to root_url
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @company = Company.find(params[:id])
+    @company.destroy
+  end
+
   private
 
   def add_commas_to_large_numbers_in_financials
@@ -72,6 +106,23 @@ class CompaniesController < ApplicationController
 
   def add_calculated_financial(symbol, first_item, second_item)
     @financials = @financials.merge({ symbol => first_item * second_item}) if first_item.present? && second_item.present?
+  end
+
+  def company_params
+    company_info = params.require(:company)
+    company_info.permit(
+      :name,
+      :ticker,
+      :price,
+      :'52_week_high',
+      :'52_week_low',
+      :cash,
+      :shares_out,
+      :three_month_volume,
+      :debt_due,
+      :burn,
+      :runway
+    )
   end
 
   def render_json

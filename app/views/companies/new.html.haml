@@ -1,0 +1,50 @@
+.container.edit-company-container
+  = link_to 'Back', root_path
+  %h3= 'New Company'
+
+  .company-form
+    = form_for @company, url: companies_path do |c|
+      .error-explanation
+        - if @company.errors.any?
+          %h2= 'Please fix the following errors:'
+          %ul
+            - @company.errors.full_messages.each do |msg|
+              %li= msg
+      .input-content
+        %ul.no-style
+          %li
+            = 'Name:'
+            .input-field= c.text_field :name
+          %li
+            = 'Ticker:'
+            .input-field= c.text_field :ticker
+          %li
+            = 'Price:'
+            .input-field= c.text_field :price
+          %li
+            = '52-week High:'
+            .input-field= c.text_field :'52_week_high'
+          %li
+            = '52-week Low:'
+            .input-field= c.text_field :'52_week_low'
+          %li
+            = 'Cash:'
+            .input-field= c.text_field :cash
+          %li
+            = 'Shares Out:'
+            .input-field= c.text_field :shares_out
+          %li
+            = '3 Month Average Daily Volume:'
+            .input-field= c.text_field :three_month_volume
+          %li
+            = 'Debt Due:'
+            .input-field= c.text_field :debt_due
+          %li
+            = 'Burn:'
+            .input-field= c.text_field :burn
+          %li
+            = 'Runway:'
+            .input-field= c.text_field :runway
+
+      .create-company-button
+        = c.submit

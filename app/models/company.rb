@@ -4,7 +4,7 @@ class Company < ActiveRecord::Base
 
   scope :by_name, order('name ASC')
 
-  validates_numericality_of :'52_week_high', allow_nil: true, greater_than: :'52_week_low', :if => Proc.new {|company| company['52_week_high'].present? && company['52_week_low'].present? }, message: '52 week high cannot be less than 52 week low'
+  validates_numericality_of :'52_week_high', allow_nil: true, greater_than: :'52_week_low', :if => Proc.new {|company| company['52_week_high'].present? && company['52_week_low'].present? }, message: 'cannot be less than 52 week low'
 
   attr_accessible :name, :ticker, :price, :'52_week_high', :'52_week_low', :cash,
                   :market_cap, :shares_out, :burn, :runway,

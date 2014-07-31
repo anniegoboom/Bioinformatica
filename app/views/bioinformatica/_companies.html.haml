@@ -9,42 +9,49 @@
   .container#company-description{:'ng-show' => 'one_company'}
     %a{:'ng-click' => 'select_all()'}= '<-- Back to All Companies'
     %h1= "{{one_company.name}} ({{one_company.ticker}})"
-    .span3#company-financials
-      %h3= 'Financials'
-      %ul.no-style
-        %li
-          = "Price:"
-          .financial="$ {{one_company.financials.price}}"
-        %li
-          ="52-week high:"
-          .financial= "$ {{one_company.financials.f52high}}"
-        %li
-          = "52-week low:"
-          .financial= "$ {{one_company.financials.f52low}}"
-        %li
-          = "Cash:"
-          .financial= "$ {{one_company.financials.cash}}"
-        %li
-          = "Market Cap:"
-          .financial= "{{one_company.financials.market_cap}}"
-        %li
-          = "Shares Out:"
-          .financial= "{{one_company.financials.shares_out}}"
-        %li
-          = "3 Month Average Daily Volume:"
-          .financial= "{{one_company.financials.three_month_volume}}"
-        %li
-          = "3 Month Average Daily $ Volume:"
-          .financial= "$ {{one_company.financials.three_month_dollar_volume}}"
-        %li
-          = "Debt Due:"
-          .financial="$ {{one_company.financials.debt_due}}"
-        %li
-          = "Burn:"
-          .finacial= "{{one_company.financials.burn}}"
-        %li
-          = "Runway:"
-          .financial="{{one_company.financials.runway}}"
+    .span3
+      .row#company-financials
+        %h3= 'Financials'
+        %ul.no-style
+          %li
+            = "Price:"
+            .financial="$ {{one_company.financials.price}}"
+          %li
+            = "52-week high:"
+            .financial= "$ {{one_company.financials.f52high}}"
+          %li
+            = "52-week low:"
+            .financial= "$ {{one_company.financials.f52low}}"
+          %li
+            = "Cash:"
+            .financial= "$ {{one_company.financials.cash}}"
+          %li
+            = "Market Cap:"
+            .financial= "{{one_company.financials.market_cap}}"
+          %li
+            = "Shares Out:"
+            .financial= "{{one_company.financials.shares_out}}"
+          %li
+            = "3 Month Average Daily Volume:"
+            .financial= "{{one_company.financials.three_month_volume}}"
+          %li
+            = "3 Month Average Daily $ Volume:"
+            .financial= "$ {{one_company.financials.three_month_dollar_volume}}"
+          %li
+            = "Debt Due:"
+            .financial="$ {{one_company.financials.debt_due}}"
+          %li
+            = "Burn:"
+            .finacial= "{{one_company.financials.burn}}"
+          %li
+            = "Runway:"
+            .financial="{{one_company.financials.runway}}"
+      .row.edit-and-destroy
+        %ul.no-style
+          %li
+            %a.edit{:'ng-click' => 'edit_company(one_company.id)'}= 'Edit Company Financials'
+          %li
+            %a.destroy{:'ng-click' => 'delete_company(one_company.id)', :'ng-confirm-click' => "Are you sure?"}= 'Delete Company'
     .span8#company-details
       .row#product-pipeline
         %h3= 'Product Pipeline'

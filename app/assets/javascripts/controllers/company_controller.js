@@ -36,6 +36,14 @@ function company_controller($scope, ajax_service, $location, communication_servi
     communication_service.setId('tag', tag_id)
   }
 
+  $scope.edit_company = function(company_id){
+    communication_service.edit('companies', company_id)
+  }
+
+  $scope.delete_company = function(company_id){
+    communication_service.destroy('companies', company_id)
+  }
+
   $scope.$watch(
     function(){
       return $location.path();
