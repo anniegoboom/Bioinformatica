@@ -54,7 +54,7 @@
             %a.destroy{:'ng-click' => 'delete_company(one_company.id)', :'ng-confirm-click' => "Are you sure?"}= 'Delete Company'
     .span8#company-details
       .row#product-pipeline
-        %h3= 'Product Pipeline'
+        %h3= 'Drug Pipeline'
         %table{:'ng-repeat' => 'p in one_company.programs'}
           %tr.program-description
             %td.program-name

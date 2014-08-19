@@ -1,0 +1,18 @@
+.container.edit-drug-container
+  = link_to 'Back', root_path
+  %h3= 'New Drug'
+
+  .drug-form
+  = form_for @drug, url: programs_path do |d|
+    .error-explanation
+      - if @drug.errors.any?
+        %h2= 'Please fix the following errors:'
+        %ul
+          - @drug.errors.full_messages.each do |msg|
+            %li= msg
+    .input-content
+      %ul.no-style
+        %li
+          = 'Name:'
+          .input-field= c.text_field :name
+
