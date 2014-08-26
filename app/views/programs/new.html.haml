@@ -1,5 +1,4 @@
 .container.edit-drug-container
-  = link_to 'Back', root_path
   %h3= 'New Drug'
 
   .drug-form
@@ -14,7 +13,19 @@
       %ul.no-style
         %li
           = 'Name:'
-          .input-field= c.text_field :name
+          .input-field= d.text_field :name
         %li
           = 'Description:'
-          = i.text_area :description, label: false
+          .input-field
+            = d.text_area :description, label: false
+        %li
+          = 'Company'
+          .input-field= d.text_field :companies
+        %li
+          = 'Tags'
+          .input-field= d.text_field :tags
+        %li
+          = 'Snippets'
+          .input-field= d.text_area :info_snippets
+    .create-button
+      = d.submit 'Create Drug'

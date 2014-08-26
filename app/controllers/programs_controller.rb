@@ -32,7 +32,49 @@ class ProgramsController < ApplicationController
     render_json
   end
 
+  def new
+    @drug = Program.new
+  end
+
+  def create
+    @drug = Program.new(drug_params)
+
+    if @drug.save
+      redirect_to root_url
+    else
+      render :new
+    end
+  end
+
+  def edit
+    @company = Company.find(params[:id])
+  end
+
+  def update
+    drug_id = params.require(:id)
+    @drug = Drug.find(drug_id)
+
+    if @drug.update_attributes(drug_params)
+      redirect_to root_url
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @drug = Program.find(params[:id])
+    @drug.destroy
+  end
+
   private
+
+  def drug_params
+    drug_info = params.require(:drug)
+    drug_info.permit(
+      :name,
+      :description
+    )
+  end
 
   def render_json
     render :json => @program_hash
