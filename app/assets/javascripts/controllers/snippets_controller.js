@@ -1,4 +1,4 @@
-function snippets_controller($scope, $location, ajax_service, communication_service) {
+bioinformaticaApp.controller('snippets_controller', function($scope, $location, ajax_service, communication_service) {
   $scope.info_snippets = {}
 
   get_all_snippets = function(){
@@ -38,5 +38,4 @@ function snippets_controller($scope, $location, ajax_service, communication_serv
     },
     true
   )
-}
-snippets_controller.$inject = ['$scope', '$location','ajaxService', 'communication_service']
+});

@@ -1,4 +1,4 @@
-function programs_controller($scope, ajax_service, $location, communication_service) {
+bioinformaticaApp.controller('programs_controller', function($scope, ajax_service, $location, communication_service) {
   $scope.programs = {}
   $scope.one_program = null
 
@@ -54,6 +54,4 @@ function programs_controller($scope, ajax_service, $location, communication_serv
     },
     true
   )
-
-}
-programs_controller.$inject = ['$scope', 'ajax_service', '$location', 'communication_service']
+});

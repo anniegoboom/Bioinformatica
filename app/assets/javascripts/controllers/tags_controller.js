@@ -1,4 +1,4 @@
-function tags_controller($scope, $location, ajax_service, communication_service) {
+bioinformaticaApp.controller('tags_controller', function($scope, $location, ajax_service, communication_service) {
   $scope.tags = {}
   $scope.one_tag = null
 
@@ -49,5 +49,4 @@ function tags_controller($scope, $location, ajax_service, communication_service)
     },
     true
   )
-}
-snippets_controller.$inject = ['$scope', '$location', 'ajax_service', 'communication_service']
+});

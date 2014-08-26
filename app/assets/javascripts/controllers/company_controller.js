@@ -1,4 +1,4 @@
-function company_controller($scope, ajax_service, $location, communication_service) {
+bioinformaticaApp.controller('company_controller', function($scope, ajax_service, $location, communication_service) {
   $scope.companies = {}
   $scope.one_company = null
 
@@ -58,7 +58,4 @@ function company_controller($scope, ajax_service, $location, communication_servi
     },
     true
   )
-
-
-}
-company_controller.$inject = ['$scope', 'ajax_service', '$location', 'communication_service']
+});
