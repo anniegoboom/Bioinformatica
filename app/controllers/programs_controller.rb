@@ -33,7 +33,10 @@ class ProgramsController < ApplicationController
   end
 
   def new
+    company_id = params[:company_id]
     @drug = Program.new
+    companies = Company.by_name
+    @companies_list = companies.map { |c| [c.ticker, c.id] }
   end
 
   def create
@@ -69,11 +72,12 @@ class ProgramsController < ApplicationController
   private
 
   def drug_params
-    drug_info = params.require(:drug)
+    drug_info = params.require(:program)
     drug_info.permit(
       :name,
       :description
     )
+    @companies = drug_info[:companies]
   end
 
   def render_json

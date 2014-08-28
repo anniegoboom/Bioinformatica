@@ -20,7 +20,7 @@
             = d.text_area :description, label: false
         %li
           = 'Company'
-          .input-field= d.text_field :companies
+          .input-field= d.select :companies, options_for_select(@companies_list)
         %li
           = 'Tags'
           .input-field= d.text_field :tags

@@ -31,21 +31,20 @@ class TagsController < ApplicationController
   def show
     tag = Tag.find_by_id(params[:id])
 
-    # info_snippets = tag.info_snippets.map do |snippet|
-    #   {
-    #     id: snippet.id,
-    #     text: snippet.text,
-    #     created_at: snippet.created_at,
-    #     updated_at: snippet.updated_at
-    #   }
-    # end
+    companies = tag.companies.map do |company|
+      {
+        id: company.id,
+        ticker: company.ticker
+      }
+    end
+
     @tag_hash =
       [{
         id: tag.id,
         name: tag.name,
         type: tag.tag_type.name,
         type_id: tag.tag_type.id,
-        # info_snippets: info_snippets
+        companies: companies.uniq
       }]
     render_json
   end

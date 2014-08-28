@@ -33,6 +33,10 @@ bioinformaticaApp.controller('tags_controller', function($scope, $location, ajax
     communication_service.setId('tag', tag_id)
   }
 
+  $scope.select_company = function(company_id){
+    communication_service.setId('company', company_id)
+  }
+
   $scope.$watch(
     function(){
       return $location.path();

@@ -13,3 +13,6 @@
       %h5= "{{one_tag.type}}"
       .tag
         %a{:'ng-click' => "select_tag(one_tag.id)"}= "{{one_tag.name}}"
+    %h3= "Companies"
+    .company{:'ng-repeat' => 'company in one_tag.companies'}
+      %a{:'ng-click' => "select_company(company.id)"}= "{{company.ticker}}"

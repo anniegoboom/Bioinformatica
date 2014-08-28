@@ -3,6 +3,8 @@ class Tag < ActiveRecord::Base
   has_and_belongs_to_many :info_snippets
   has_and_belongs_to_many :programs
 
+  has_many :companies, through: :programs
+
   scope :by_name, order('name ASC')
   scope :by_name_desc, order('name DESC')
 
