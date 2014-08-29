@@ -1,8 +1,8 @@
 .container.edit-drug-container
-  %h3= 'New Drug'
+  %h3= 'Edit Drug'
 
   .drug-form
-    = form_for @drug, url: programs_path do |d|
+    = form_for @drug, url: program_path(@drug) do |d|
       .error-explanation
         - if @drug.errors.any?
           %h2= 'Please fix the following errors:'
@@ -28,4 +28,4 @@
             = 'Snippets'
             .input-field= d.text_area :info_snippets
       .create-button
-        = d.submit 'Create Drug'
+        = d.submit

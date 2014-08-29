@@ -66,6 +66,8 @@
               .tags-container
                 .tag{:'ng-repeat' => 't in p.tags'}
                   %a{:'ng-click' => "select_tag(t.id)"}= "{{t.name}}"
+      .row
+        = button_to 'New Drug', new_program_path(company_id: "{{one_company.id}}"), method: :get
 
       .row#timeline
         %h3= 'Timeline'

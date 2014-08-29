@@ -23,8 +23,16 @@ bioinformaticaApp.controller('programs_controller', function($scope, ajax_servic
     })
   }
 
-  $scope.select_program = function(program_id){
-    communication_service.setId('drug', program_id)
+  $scope.select_drug = function(drug_id){
+    communication_service.setId('drug', drug_id)
+  }
+
+  $scope.edit_drug = function(drug_id){
+    communication_service.edit('programs', drug_id)
+  }
+
+  $scope.delete_drug= function(drug_id){
+    communication_service.destroy('programs', drug_id)
   }
 
   $scope.select_company = function(company_id){

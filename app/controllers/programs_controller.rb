@@ -33,14 +33,16 @@ class ProgramsController < ApplicationController
   end
 
   def new
-    company_id = params[:company_id]
     @drug = Program.new
-    companies = Company.by_name
-    @companies_list = companies.map { |c| [c.ticker, c.id] }
+    @companies = Company.by_name
+
+    # company_id = params[:company_id]
+    # @drug = Program.new(:company_ids => 1)
   end
 
   def create
     @drug = Program.new(drug_params)
+    @drug.company_ids = @selected_company
 
     if @drug.save
       redirect_to root_url
@@ -50,12 +52,13 @@ class ProgramsController < ApplicationController
   end
 
   def edit
-    @company = Company.find(params[:id])
+    @drug = Program.find(params[:id])
+    @companies = Company.by_name
   end
 
   def update
     drug_id = params.require(:id)
-    @drug = Drug.find(drug_id)
+    @drug = Program.find(drug_id)
 
     if @drug.update_attributes(drug_params)
       redirect_to root_url
@@ -73,11 +76,16 @@ class ProgramsController < ApplicationController
 
   def drug_params
     drug_info = params.require(:program)
+
+    @selected_company = drug_info[:company_ids]
+    @selected_tags
+    @selected_snippets
+
     drug_info.permit(
       :name,
-      :description
+      :description,
+      :companies
     )
-    @companies = drug_info[:companies]
   end
 
   def render_json
