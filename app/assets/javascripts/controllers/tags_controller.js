@@ -37,6 +37,14 @@ bioinformaticaApp.controller('tags_controller', function($scope, $location, ajax
     communication_service.setId('company', company_id)
   }
 
+  $scope.edit_tag = function(tag_id){
+    communication_service.edit('tags', tag_id)
+  }
+
+  $scope.delete_tag= function(tag_id){
+    communication_service.destroy('tags', tag_id)
+  }
+
   $scope.$watch(
     function(){
       return $location.path();

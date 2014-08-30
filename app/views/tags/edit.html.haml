@@ -1,0 +1,23 @@
+= render :partial => './haml_nav'
+
+.container#edit-tag-container
+  %h3= 'New Tag'
+
+  .drug-form
+    = form_for @tag, url: tag_path(@tag) do |t|
+      .error-explanation
+        - if @tag.errors.any?
+          %h2= 'Please fix the following errors:'
+          %ul
+            - @tag.errors.full_messages.each do |msg|
+              %li= msg
+      .input-content
+        %ul.no-style
+          %li
+            = 'Tag Type'
+            .input-field= t.select :tag_type_id, options_from_collection_for_select(@tag_types, 'id', 'name', 3)
+          %li
+            = 'Name:'
+            .input-field= t.text_field :name
+      .create-button
+        = t.submit

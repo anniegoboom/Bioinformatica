@@ -49,7 +49,53 @@ class TagsController < ApplicationController
     render_json
   end
 
+  def new
+    @tag = Tag.new
+    @tag_types = TagType.by_name
+  end
+
+  def create
+    @tag = Tag.new(tag_params)
+
+    if @tag.save
+      redirect_to '/#/snippet'
+    else
+      render :new
+    end
+  end
+
+  def edit
+    @tag = Tag.find(params[:id])
+    @tag_types = TagType.by_name
+  end
+
+  def update
+    @tag = Tag.find(params.require(:id))
+
+    if @tag.update_attributes(tag_params)
+      redirect_to root_path
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @tag = Tag.find(params[:id])
+    @tag.destroy
+  end
+
   private
+
+  def tag_params
+    tag_info = params.require(:tag)
+    tag_type = tag_info.require(:tag_type_id)
+
+    tag_info.permit(
+      :id,
+      :name,
+      :tag_type_id
+    )
+  end
 
   def render_json
     render :json => @tag_hash

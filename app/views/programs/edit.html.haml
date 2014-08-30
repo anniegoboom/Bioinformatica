@@ -13,8 +13,11 @@
               %li= msg
       .input-content
         %ul.no-style
+          - if @drug.companies[0].present?
+            %li
+              = "( Currently Company: #{@drug.companies[0].ticker} )"
           %li
-            = 'Company'
+            = 'Change Company'
             .input-field= d.select :company_ids, options_from_collection_for_select(@companies, 'id', 'ticker'), {include_blank: true }
           %li
             = 'Name:'
