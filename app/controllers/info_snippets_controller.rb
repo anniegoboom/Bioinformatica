@@ -32,15 +32,51 @@ class InfoSnippetsController < ApplicationController
     render_json
   end
 
+  def new
+    @info = InfoSnippet.new
+  end
+
+  def create
+    @info = InfoSnippet.new(info_snippet_params)
+
+    if @info.save
+      redirect_to '/#/snippet'
+    else
+      render :new
+    end
+  end
+
+  def edit
+    @info = InfoSnippet.find(params[:id])
+  end
+
+  def update
+    @info = InfoSnippet.find(params.require(:id))
+
+    if @info.update_attributes(info_snippet_params)
+      redirect_to '/#/snippet'
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @info = InfoSnippet.find(params[:id])
+    @info.destroy
+  end
+
   private
 
   def render_json
     render :json => @info_hash
   end
 
-  #for create and update
-  def info_params
-    params.require(:info_snippet).permit(:text)
+  def info_snippet_params
+    params.require(:info_snippet).permit(
+      :subject,
+      :text,
+      :event_date
+    )
   end
 
 end

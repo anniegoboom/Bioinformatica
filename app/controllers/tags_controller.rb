@@ -73,7 +73,7 @@ class TagsController < ApplicationController
     @tag = Tag.find(params.require(:id))
 
     if @tag.update_attributes(tag_params)
-      redirect_to root_path
+      redirect_to '/#/snippet'
     else
       render :edit
     end

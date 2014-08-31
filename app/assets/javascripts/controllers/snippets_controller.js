@@ -23,6 +23,14 @@ bioinformaticaApp.controller('snippets_controller', function($scope, $location, 
     communication_service.setId('snippet', snippet_id)
   }
 
+  $scope.edit_snippet = function(snippet_id){
+    communication_service.edit('info_snippets', snippet_id)
+  }
+
+  $scope.delete_snippet = function(snippet_id){
+    communication_service.destroy('info_snippets', snippet_id)
+  }
+
   $scope.$watch(
     function(){
       return $location.path();
