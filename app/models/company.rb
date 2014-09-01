@@ -8,5 +8,6 @@ class Company < ActiveRecord::Base
 
   attr_accessible :name, :ticker, :price, :'52_week_high', :'52_week_low', :cash,
                   :market_cap, :shares_out, :burn, :runway,
-                  :info_snippet_ids, :program_ids, :three_month_volume, :debt_due
+                  :info_snippet_ids, :program_ids, :three_month_volume, :debt_due,
+                  :sec_filings
 end

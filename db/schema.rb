@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140710205552) do
+ActiveRecord::Schema.define(:version => 20140901052953) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(:version => 20140710205552) do
     t.string   "ticker"
     t.integer  "three_month_volume"
     t.integer  "debt_due"
+    t.text     "sec_filings"
   end
 
   create_table "companies_info_snippets", :id => false, :force => true do |t|
@@ -76,13 +77,6 @@ ActiveRecord::Schema.define(:version => 20140710205552) do
   end
 
   add_index "companies_programs", ["company_id", "program_id"], :name => "index_companies_programs_on_company_id_and_program_id", :unique => true
-
-  create_table "companys_info_snippets", :id => false, :force => true do |t|
-    t.integer "company_id",      :null => false
-    t.integer "info_snippet_id", :null => false
-  end
-
-  add_index "companys_info_snippets", ["info_snippet_id", "company_id"], :name => "index_companys_info_snippets_on_info_snippet_id_and_company_id", :unique => true
 
   create_table "info_snippets", :force => true do |t|
     t.text     "text"

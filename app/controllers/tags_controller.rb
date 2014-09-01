@@ -70,10 +70,11 @@ class TagsController < ApplicationController
   end
 
   def update
-    @tag = Tag.find(params.require(:id))
+    tag_id = params.require(:id)
+    @tag = Tag.find(tag_id)
 
     if @tag.update_attributes(tag_params)
-      redirect_to '/#/snippet'
+      redirect_to "/#/tag=#{tag_id}"
     else
       render :edit
     end

@@ -54,7 +54,8 @@ class CompaniesController < ApplicationController
           programs: programs,
           financials: @financials,
           timeline_snippets: timeline_snippets,
-          diligence_snippets: diligence_snippets
+          diligence_snippets: diligence_snippets,
+          sec_filings: company.sec_filings
           }]
       render_json
     end
@@ -79,11 +80,11 @@ class CompaniesController < ApplicationController
   end
 
   def update
-    company_id = params[:id]
+    company_id = params.require(:id)
     @company = Company.find(company_id)
 
     if @company.update_attributes(company_params)
-      redirect_to root_url
+      redirect_to "/#/company=#{company_id}"
     else
       render :edit
     end
@@ -121,7 +122,8 @@ class CompaniesController < ApplicationController
       :three_month_volume,
       :debt_due,
       :burn,
-      :runway
+      :runway,
+      :sec_filings
     )
   end
 

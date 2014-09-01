@@ -51,10 +51,11 @@ class InfoSnippetsController < ApplicationController
   end
 
   def update
-    @info = InfoSnippet.find(params.require(:id))
+    snippet_id = params.require(:id)
+    @info = InfoSnippet.find(snippet_id)
 
     if @info.update_attributes(info_snippet_params)
-      redirect_to '/#/snippet'
+      redirect_to '/#/snippet=#{snippet_id}'
     else
       render :edit
     end
