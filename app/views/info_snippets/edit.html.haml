@@ -24,6 +24,16 @@
       %li
         = 'Drug'
         .input-field= i.select :program_ids, options_from_collection_for_select(@drugs, 'id', 'name'), {include_blank: true }
+      %li
+        %h3= 'Tags'
+        - for type in TagType.all
+          .row
+            %h5= type.name
+            - for tag in type.tags
+              .tag
+                = check_box_tag "tags[]", tag.id, @info.tags.include?(tag)
+                = tag.name
+
 
     .submit-button
       = i.submit 'Update Snippet'
