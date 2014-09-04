@@ -34,10 +34,15 @@ class InfoSnippetsController < ApplicationController
 
   def new
     @info = InfoSnippet.new
+    @companies = Company.by_name
+    @drugs = Program.by_name
   end
 
   def create
     @info = InfoSnippet.new(info_snippet_params)
+
+    @info.company_ids = @selected_companies if @selected_companies.present?
+    @info.program_ids = @selected_drugs if @selected_drugs.present?
 
     if @info.save
       redirect_to '/#/snippet'
@@ -48,14 +53,19 @@ class InfoSnippetsController < ApplicationController
 
   def edit
     @info = InfoSnippet.find(params[:id])
+    @companies = Company.by_name
+    @drugs = Program.by_name
   end
 
   def update
     snippet_id = params.require(:id)
     @info = InfoSnippet.find(snippet_id)
 
+    @info.company_ids = @selected_companies if @selected_companies.present?
+    @info.program_ids = @selected_drugs if @selected_drugs.present?
+
     if @info.update_attributes(info_snippet_params)
-      redirect_to '/#/snippet=#{snippet_id}'
+      redirect_to "/#/snippet=#{snippet_id}"
     else
       render :edit
     end
@@ -73,7 +83,12 @@ class InfoSnippetsController < ApplicationController
   end
 
   def info_snippet_params
-    params.require(:info_snippet).permit(
+    info_snippet = params.require(:info_snippet)
+
+    @selected_companies = info_snippet[:company_ids]
+    @selected_drugs = info_snippet[:program_ids]
+
+    info_snippet.permit(
       :subject,
       :text,
       :event_date
