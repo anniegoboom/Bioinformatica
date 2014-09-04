@@ -24,6 +24,6 @@ test:
 production:
   adapter: mysql2
   database: bioinformatica_production
-  username: annie
-  password: annieisthebest
+  username: root
+  password: password
   encoding: utf8
