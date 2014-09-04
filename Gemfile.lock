@@ -37,6 +37,8 @@ GEM
       activerecord (>= 3.2.9)
       activesupport (>= 3.2.9)
       mysql (>= 2.9.0)
+    activerecord-postgresql-adapter (0.0.1)
+      pg
     activeresource (3.2.13)
       activemodel (= 3.2.13)
       activesupport (= 3.2.13)
@@ -111,6 +113,7 @@ GEM
     mysql (2.9.1)
     mysql2 (0.3.15)
     orm_adapter (0.5.0)
+    pg (0.17.1)
     polyamorous (0.5.0)
       activerecord (~> 3.0)
     polyglot (0.3.5)
@@ -195,6 +198,7 @@ PLATFORMS
 DEPENDENCIES
   activeadmin
   activerecord-mysql-adapter
+  activerecord-postgresql-adapter
   angularjs-rails
   coffee-rails (~> 3.2.1)
   haml
