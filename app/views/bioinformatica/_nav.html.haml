@@ -1,7 +1,7 @@
 #nav{:'ng-controller' => 'nav_controller'}
   %a#company-nav{:'ng-click' => 'show_all_companies()'}= 'All Companies'
   %a#program-nav{:'ng-click' => 'show_all_programs()'}= 'All Drugs'
-  %a#conversation-nav{:'ng-click' => 'show_all_conversations_and_tags()'}= 'All Conversations'
+  %a#conversation-nav{:'ng-click' => 'show_all_conversations_and_tags()'}= 'All Snippets'
   = link_to 'New Company', new_company_path
   = link_to 'New Drug', new_program_path
   = link_to 'New Tag', new_tag_path

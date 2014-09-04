@@ -36,12 +36,13 @@ class ProgramsController < ApplicationController
     @drug = Program.new
     @companies = Company.by_name
 
-    @drug.company_ids = params[:company_id]
+    #@drug.company_ids = params[:company_id]
   end
 
   def create
     @drug = Program.new(drug_params)
     @drug.company_ids = @selected_company if @selected_company.present?
+    @drug.tag_ids = @selected_tags if @selected_tags.present?
 
     if @drug.save
       redirect_to '/#/drug'
@@ -60,6 +61,7 @@ class ProgramsController < ApplicationController
     @drug = Program.find(params.require(:id))
 
     @drug.company_ids = @selected_company if @selected_company.present?
+    @drug.tag_ids = @selected_tags if @selected_tags.present?
 
     if @drug.update_attributes(update_params)
       redirect_to "/#/drug=#{@drug.id}"
@@ -79,8 +81,7 @@ class ProgramsController < ApplicationController
     drug_info = params.require(:program)
 
     @selected_company = drug_info[:company_ids] || @selected_company
-    @selected_tags
-    @selected_snippets
+    @selected_tags = params[:tags]
 
     drug_info.permit(
       :id,

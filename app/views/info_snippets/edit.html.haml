@@ -18,6 +18,12 @@
       %li
         = 'Date'
         .input-field= i.date_select :event_date, :include_blank => true
+      %li
+        = 'Company'
+        .input-field= i.select :company_ids, options_from_collection_for_select(@companies, 'id', 'ticker'), {include_blank: true }
+      %li
+        = 'Drug'
+        .input-field= i.select :program_ids, options_from_collection_for_select(@drugs, 'id', 'name'), {include_blank: true }
 
     .submit-button
       = i.submit 'Update Snippet'
