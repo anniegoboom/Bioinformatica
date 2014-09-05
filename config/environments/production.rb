@@ -62,7 +62,7 @@ Bioinformatica::Application.configure do
   config.active_support.deprecation = :notify
 
   # Turn off angular minifier
-  config.assets.js_compressor = Uglifier.new(mangle: false)
+  config.assets.js_compressor = Uglifier.new(mangle: false) if defined? Uglifier
 
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
