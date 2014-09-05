@@ -28,13 +28,14 @@
               = d.text_area :description, label: false
           %li
             %h3= 'Tags'
-            - for type in TagType.all
-              .row
-                %h5= type.name
-                - for tag in type.tags
-                  .tag
-                    = check_box_tag "tags[]", tag.id, @drug.tags.include?(tag)
-                    = tag.name
+            .tags-selection-container
+              - for type in TagType.all
+                .row
+                  %h5= type.name
+                  - for tag in type.tags
+                    .tag
+                      = check_box_tag "tags[]", tag.id, @drug.tags.include?(tag)
+                      = tag.name
 
       .create-button
         = d.submit 'Create Drug'

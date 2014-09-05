@@ -1,39 +1,42 @@
-%h1= 'Editing Info Snippet'
+= render :partial => './haml_nav'
 
-= form_for @info, url: info_snippet_path(@info) do |i|
-  .error-explanation
-    - if @info.errors.any?
-      %h2= 'Please fix the following errors:'
-      %ul
-        - @info.errors.full_messages.each do |msg|
-          %li= msg
-  .input-content
-    %ul.no-style
-      %li
-        = 'Subject'
-        .input-field= i.text_field :subject
-      %li
-        = 'Snippet'
-        .input-field= i.text_area :text, label: false
-      %li
-        = 'Date'
-        .input-field= i.date_select :event_date, :include_blank => true
-      %li
-        = 'Company'
-        .input-field= i.select :company_ids, options_from_collection_for_select(@companies, 'id', 'ticker'), {include_blank: true }
-      %li
-        = 'Drug'
-        .input-field= i.select :program_ids, options_from_collection_for_select(@drugs, 'id', 'name'), {include_blank: true }
-      %li
-        %h3= 'Tags'
-        - for type in TagType.all
-          .row
-            %h5= type.name
-            - for tag in type.tags
-              .tag
-                = check_box_tag "tags[]", tag.id, @info.tags.include?(tag)
-                = tag.name
+.container#edit-snippet-container
+  %h3= 'Editing Info Snippet'
 
+  = form_for @info, url: info_snippet_path(@info) do |i|
+    .error-explanation
+      - if @info.errors.any?
+        %h2= 'Please fix the following errors:'
+        %ul
+          - @info.errors.full_messages.each do |msg|
+            %li= msg
+    .input-content
+      %ul.no-style
+        %li
+          = 'Subject'
+          .input-field= i.text_field :subject
+        %li
+          = 'Snippet'
+          .input-field= i.text_area :text, label: false
+        %li
+          = 'Date'
+          .input-field= i.date_select :event_date, :include_blank => true
+        %li
+          = 'Company'
+          .input-field= i.select :company_ids, options_from_collection_for_select(@companies, 'id', 'ticker'), {include_blank: true }
+        %li
+          = 'Drug'
+          .input-field= i.select :program_ids, options_from_collection_for_select(@drugs, 'id', 'name'), {include_blank: true }
+        %li
+          %h3= 'Tags'
+          .tags-selection-container
+            - for type in TagType.all
+              .row
+                %h5= type.name
+                - for tag in type.tags
+                  .tag
+                    = check_box_tag "tags[]", tag.id, @info.tags.include?(tag)
+                    = tag.name
 
-    .submit-button
-      = i.submit 'Update Snippet'
+      .create-button
+        = i.submit 'Update Snippet'
