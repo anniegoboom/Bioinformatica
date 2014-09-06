@@ -60,6 +60,7 @@ class TagsController < ApplicationController
     if @tag.save
       redirect_to '/#/snippet'
     else
+      @tag_types = TagType.by_name
       render :new
     end
   end
@@ -76,6 +77,7 @@ class TagsController < ApplicationController
     if @tag.update_attributes(tag_params)
       redirect_to "/#/tag=#{tag_id}"
     else
+      @tag_types = TagType.by_name
       render :edit
     end
   end

@@ -8,7 +8,7 @@
     = form_for @company, url: companies_path do |c|
       .error-explanation
         - if @company.errors.any?
-          %h2= 'Please fix the following errors:'
+          %h5= 'Please fix the following errors:'
           %ul
             - @company.errors.full_messages.each do |msg|
               %li= msg

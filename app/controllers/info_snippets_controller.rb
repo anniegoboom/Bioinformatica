@@ -48,6 +48,8 @@ class InfoSnippetsController < ApplicationController
     if @info.save
       redirect_to '/#/snippet'
     else
+      @companies = Company.by_name
+      @drugs = Program.by_name
       render :new
     end
   end
@@ -69,6 +71,8 @@ class InfoSnippetsController < ApplicationController
     if @info.update_attributes(info_snippet_params)
       redirect_to "/#/snippet=#{snippet_id}"
     else
+      @companies = Company.by_name
+      @drugs = Program.by_name
       render :edit
     end
   end

@@ -7,7 +7,7 @@
     = form_for @drug, url: program_path(@drug) do |d|
       .error-explanation
         - if @drug.errors.any?
-          %h2= 'Please fix the following errors:'
+          %h5= 'Please fix the following errors:'
           %ul
             - @drug.errors.full_messages.each do |msg|
               %li= msg
@@ -30,12 +30,13 @@
             %h3= 'Tags'
             .tags-selection-container
               - for type in TagType.all
-                .row
-                  %h5= type.name
-                  - for tag in type.tags
-                    .tag
-                      = check_box_tag "tags[]", tag.id, @drug.tags.include?(tag)
-                      = tag.name
+                - if type.tags.length > 0
+                  .row
+                    %h5= type.name
+                    - for tag in type.tags
+                      .tag
+                        = check_box_tag "tags[]", tag.id, @drug.tags.include?(tag)
+                        = tag.name
 
       .create-button
         = d.submit 'Update Drug'

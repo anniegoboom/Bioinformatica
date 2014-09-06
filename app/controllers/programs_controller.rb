@@ -47,6 +47,7 @@ class ProgramsController < ApplicationController
     if @drug.save
       redirect_to '/#/drug'
     else
+      @companies = Company.by_name
       render :new
     end
   end
@@ -66,6 +67,7 @@ class ProgramsController < ApplicationController
     if @drug.update_attributes(update_params)
       redirect_to "/#/drug=#{@drug.id}"
     else
+      @companies = Company.by_name
       render :edit
     end
   end

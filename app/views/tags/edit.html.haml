@@ -7,7 +7,7 @@
     = form_for @tag, url: tag_path(@tag) do |t|
       .error-explanation
         - if @tag.errors.any?
-          %h2= 'Please fix the following errors:'
+          %h5= 'Please fix the following errors:'
           %ul
             - @tag.errors.full_messages.each do |msg|
               %li= msg
