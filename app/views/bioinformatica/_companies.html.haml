@@ -67,7 +67,7 @@
                 .tag{:'ng-repeat' => 't in p.tags'}
                   %a{:'ng-click' => "select_tag(t.id)"}= "{{t.name}}"
       .row
-        = button_to 'New Drug', new_program_path(company_id: "{{one_company.id}}"),method: :get
+        = button_to 'New Drug', new_program_path(company_id: "{{one_company.id}}"), method: :get
 
       .row#timeline
         %h3= 'Timeline'
@@ -83,7 +83,7 @@
             %a{:'ng-click' => "select_snippet(i.id)"}
               .subject{:'ng-show' => 'i.subject'} {{i.subject}}
               {{i.text}}
-      .row#sec_filings
+      .row#SEC
         %h3= 'SEC Filings'
         {{one_company.sec_filings}}
 
