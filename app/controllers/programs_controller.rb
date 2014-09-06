@@ -88,8 +88,7 @@ class ProgramsController < ApplicationController
     drug_info.permit(
       :id,
       :name,
-      :description,
-      :companies
+      :description
     )
   end
 

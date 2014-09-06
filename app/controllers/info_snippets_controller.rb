@@ -61,6 +61,7 @@ class InfoSnippetsController < ApplicationController
   end
 
   def update
+    update_params = info_snippet_params
     snippet_id = params.require(:id)
     @info = InfoSnippet.find(snippet_id)
 
@@ -68,7 +69,7 @@ class InfoSnippetsController < ApplicationController
     @info.program_ids = @selected_drugs if @selected_drugs.present?
     @info.tag_ids = @selected_tags if @selected_tags.present?
 
-    if @info.update_attributes(info_snippet_params)
+    if @info.update_attributes(update_params)
       redirect_to "/#/snippet=#{snippet_id}"
     else
       @companies = Company.by_name
