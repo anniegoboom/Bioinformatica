@@ -4,48 +4,48 @@
     %ul.no-style
       .li{:'ng-repeat' => 'c in companies'}
         %a{:'ng-click' => "select_company(c.id)"}
-          .span{:'ng-show' => "c.ticker"}= "[ {{c.ticker}} ]"
-          = "{{c.name}}"
+          .span{:'ng-show' => "c.ticker"} [ {{c.ticker}} ]
+          {{c.name}}
   .container#company-description{:'ng-show' => 'one_company'}
     %a{:'ng-click' => 'select_all()'}= '<-- Back to All Companies'
-    %h1= "{{one_company.name}} ({{one_company.ticker}})"
+    %h1 {{one_company.name}} ({{one_company.ticker}})
     .span3
       .row#company-financials
         %h3= 'Financials'
         %ul.no-style
           %li
-            = "Price:"
-            .financial="$ {{one_company.financials.price}}"
+            Price:
+            .financial ${{one_company.financials.price}}
           %li
-            = "52-week high:"
-            .financial= "$ {{one_company.financials.f52high}}"
+            52-week high:
+            .financial ${{one_company.financials.f52high}}
           %li
-            = "52-week low:"
-            .financial= "$ {{one_company.financials.f52low}}"
+            52-week low:
+            .financial ${{one_company.financials.f52low}}
           %li
-            = "Cash:"
-            .financial= "$ {{one_company.financials.cash}}"
+            Cash:
+            .financial ${{one_company.financials.cash}}
           %li
-            = "Market Cap:"
-            .financial= "{{one_company.financials.market_cap}}"
+            Market Cap:
+            .financial ${{one_company.financials.market_cap}}
           %li
-            = "Shares Out:"
-            .financial= "{{one_company.financials.shares_out}}"
+            Shares Out:
+            .financial {{one_company.financials.shares_out}}
           %li
-            = "3 Month Average Daily Volume:"
-            .financial= "{{one_company.financials.three_month_volume}}"
+            3 Month Average Daily Volume:
+            .financial {{one_company.financials.three_month_volume}}
           %li
-            = "3 Month Average Daily $ Volume:"
-            .financial= "$ {{one_company.financials.three_month_dollar_volume}}"
+            3 Month Average Daily $ Volume:
+            .financial ${{one_company.financials.three_month_dollar_volume}}
           %li
-            = "Debt Due:"
-            .financial="$ {{one_company.financials.debt_due}}"
+            Debt Due:
+            .financial ${{one_company.financials.debt_due}}
           %li
-            = "Burn:"
-            .finacial= "{{one_company.financials.burn}}"
+            Burn:
+            .finacial {{one_company.financials.burn}}
           %li
-            = "Runway:"
-            .financial="{{one_company.financials.runway}}"
+            Runway:
+            .financial {{one_company.financials.runway}}
       .row.edit-and-destroy
         %ul.no-style
           %li
@@ -73,18 +73,18 @@
         %h3= 'Timeline'
         %table
           %tr.snippet{:'ng-repeat' => 's in one_company.timeline_snippets'}
-            %td.date= "{{s.event_date}}"
+            %td.date {{s.event_date}}
             %td.catalyst
-              %a{:'ng-click' => 'select_snippet(s.id)'}= "{{s.text}}"
+              %a{:'ng-click' => 'select_snippet(s.id)'} {{s.text}}
       .row#diligence
         %h3= 'Diligence'
         %ul.no-style
           %li.info-snippet{:'ng-repeat' => 'i in one_company.diligence_snippets'}
             %a{:'ng-click' => "select_snippet(i.id)"}
-              .subject{:'ng-show' => 'i.subject'}= "{{i.subject}}"
-              = "{{i.text}}"
-      .row#SEC
+              .subject{:'ng-show' => 'i.subject'} {{i.subject}}
+              {{i.text}}
+      .row#sec_filings
         %h3= 'SEC Filings'
-        =simple_format "{{one_company.sec_filings}}"
+        {{one_company.sec_filings}}
 
 

@@ -4,13 +4,13 @@
     %ul.no-style
       %li{:'ng-repeat' => '(type, t) in tags'}
         .type{:'ng-hide' => "t.length == 0"}
-          %h5= "{{type}}"
+          %h5 {{type}}
           %ul.no-style
             %li.tag{:'ng-repeat' => 'tag in t'}
               %a{:'ng-click' => "select_tag(tag.id)"}= "{{tag.name}}"
   .tags-nav#one-tag{:'ng-show' => 'one_tag'}
     .type
-      %h5= "{{one_tag.type}}"
+      %h5 {{one_tag.type}}
       .tag
         %a{:'ng-click' => "select_tag(one_tag.id)"}= "{{one_tag.name}}"
     .row.edit-and-destroy
