@@ -20,12 +20,26 @@ class InfoSnippetsController < ApplicationController
 
   def show
     snippet = InfoSnippet.find_by_id(params[:id])
+    companies = snippet.companies.map do |company|
+      {
+        id: company.id,
+        ticker: company.ticker
+      }
+    end
+    drugs = snippet.programs.map do |program|
+      {
+        id: program.id,
+        name: program.name
+      }
+    end
     @info_hash =
       [{
         id: snippet.id,
         subject: snippet.subject,
         text: snippet.text,
         event_date: snippet.event_date,
+        companies: companies,
+        drugs: drugs,
         created_at: snippet.created_at,
         updated_at: snippet.updated_at
       }]
