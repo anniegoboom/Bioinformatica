@@ -23,13 +23,13 @@
             52-week low:
             .financial ${{one_company.financials.f52low}}
           %li
-            Cash:
+            Cash (in millions):
             .financial ${{one_company.financials.cash}}
           %li
-            Market Cap:
+            Market Cap (in millions):
             .financial ${{one_company.financials.market_cap}}
           %li
-            Shares Out:
+            Shares Out (in millions):
             .financial {{one_company.financials.shares_out}}
           %li
             3 Month Average Daily Volume:
@@ -38,8 +38,11 @@
             3 Month Average Daily $ Volume:
             .financial ${{one_company.financials.three_month_dollar_volume}}
           %li
+            Debt (in millions):
+            .financial ${{one_company.financials.debt}}
+          %li
             Debt Due:
-            .financial ${{one_company.financials.debt_due}}
+            .financial {{one_company.financials.debt_due}}
           %li
             Burn:
             .finacial {{one_company.financials.burn}}
@@ -47,11 +50,8 @@
             Runway:
             .financial {{one_company.financials.runway}}
       .row.edit-and-destroy
-        %ul.no-style
-          %li
-            %a.edit{:'ng-click' => 'edit_company(one_company.id)'}= 'Edit Company Financials'
-          %li
-            %a.destroy{:'ng-click' => 'delete_company(one_company.id)', :'ng-confirm-click' => "Are you sure?"}= 'Delete Company'
+        %a.btn.edit{:'ng-click' => 'edit_company(one_company.id)', type: :submit, method: :get}= 'Edit Company'
+        %a.btn.destroy{:'ng-click' => 'delete_company(one_company.id)', :'ng-confirm-click' => "Are you sure?"}= 'Delete Company'
     .span8#company-details
       .row#product-pipeline
         %h3= 'Drug Pipeline'
@@ -83,8 +83,8 @@
             %a{:'ng-click' => "select_snippet(i.id)"}
               .subject{:'ng-show' => 'i.subject'} {{i.subject}}
               {{i.text}}
-      .row#SEC
-        %h3= 'SEC Filings'
+      .row#Other
+        %h3= 'Other Details'
         {{one_company.sec_filings}}
 
 

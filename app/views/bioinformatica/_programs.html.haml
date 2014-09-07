@@ -1,12 +1,12 @@
 #programs-container{:'ng-controller' => 'programs_controller'}
-  .container#programs-list{:'ng-show' => '!one_program'}
+  .row#programs-list{:'ng-show' => '!one_program'}
     .row.header
       %h3= 'Drugs'
     .row.list
       %ul.no-style
         %li.program{:'ng-repeat' => 'p in programs'}
           %a{:'ng-click' => "select_drug(p.id)"}= "{{p.name}}"
-  .container#one-program{:'ng-show' => 'one_program'}
+  .row#one-program{:'ng-show' => 'one_program'}
     .row.header
       %h3 {{one_program.name}}
       %p {{one_program.description}}
@@ -24,11 +24,8 @@
           %a{:'ng-click' => 'select_company(c.id)'}="{{c.name}}"
 
     .row.edit-and-destroy
-      %ul.no-style
-        %li
-          %a.edit{:'ng-click' => 'edit_drug(one_program.id)'}= 'Edit Drug'
-        %li
-          %a.destroy{:'ng-click' => 'delete_drug(one_program.id)', :'ng-confirm-click' => "Are you sure?"}= 'Delete Drug'
+      %a.btn.edit{:'ng-click' => 'edit_drug(one_program.id)'}= 'Edit Drug'
+      %a.btn.destroy{:'ng-click' => 'delete_drug(one_program.id)', :'ng-confirm-click' => "Are you sure?"}= 'Delete Drug'
 
     .row.back
       %a{:'ng-click' => 'select_all()'}= '<-- Back to All Programs'

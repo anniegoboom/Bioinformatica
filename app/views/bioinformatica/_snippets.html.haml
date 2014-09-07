@@ -1,5 +1,5 @@
 #snippets-container{:'ng-controller' => 'snippets_controller'}
-  .row
+  .row.snippet
     %h3= 'Snippets'
     %ul.no-style
       %li.info-snippet{:'ng-repeat' => 'i in info_snippets'}
@@ -7,10 +7,16 @@
           .subject{:'ng-show' => 'i.subject'}= "{{i.subject}}"
           .snippet-text {{i.text}}
           .event-date{:'ng-show' => 'i.event_date'}= "Date: {{i.event_date}}"
-    .row.edit-and-destroy{:'ng-show' => 'info_snippets.length == 1'}
-      %ul.no-style
-        %li
-          %a.edit{:'ng-click' => 'edit_snippet(info_snippets[0].id)'}= 'Edit Snippet'
-        %li
-          %a.destroy{:'ng-click' => 'delete_snippet(info_snippets[0].id)', :'ng-confirm-click' => "Are you sure?"}= 'Delete Snippet'
+  .row#one-snippet-extras{:'ng-show' => 'info_snippets.length == 1'}
+    .companies
+      %h3= 'Companies'
+      .company{:'ng-repeat' => 'company in info_snippets[0].companies'}
+      %a{:'ng-click' => "select_company(company.id)"}= "{{company.ticker}}"
+    .drugs
+      %h3= 'Drugs'
+      .drug{:'ng-repeat' => 'drug in info_snippets[0].drugs'}
+      %a{:'ng-click' => "select_drug(drug.id)"}= "{{drug.ticker}}"
+    .edit-and-destroy
+      %a.btn.edit{:'ng-click' => 'edit_snippet(info_snippets[0].id)'}= 'Edit Snippet'
+      %a.btn.destroy{:'ng-click' => 'delete_snippet(info_snippets[0].id)', :'ng-confirm-click' => "Are you sure?"}= 'Delete Snippet'
 
