@@ -15,40 +15,44 @@
         %ul.no-style
           %li
             Price:
-            .financial ${{one_company.financials.price}}
+            .financial ${{one_company.financials.price | number:2}}
           %li
             52-week high:
-            .financial ${{one_company.financials.f52high}}
+            .financial ${{one_company.financials.f52high | number:2}}
           %li
             52-week low:
-            .financial ${{one_company.financials.f52low}}
+            .financial ${{one_company.financials.f52low | number:2}}
           %li
             Cash (in millions):
-            .financial ${{one_company.financials.cash}}
-          %li
-            Market Cap (in millions):
-            .financial ${{one_company.financials.market_cap}}
+            .financial ${{one_company.financials.cash | number}}
           %li
             Shares Out (in millions):
-            .financial {{one_company.financials.shares_out}}
+            .financial {{one_company.financials.shares_out | number:2}}
           %li
-            3 Month Average Daily Volume:
-            .financial {{one_company.financials.three_month_volume}}
+            Market Cap (in millions):
+            .financial ${{one_company.financials.market_cap | number:2}}
           %li
-            3 Month Average Daily $ Volume:
-            .financial ${{one_company.financials.three_month_dollar_volume}}
+            Cash (in millions):
+            .financial ${{one_company.financials.cash | number}}
           %li
             Debt (in millions):
-            .financial ${{one_company.financials.debt}}
+            .financial ${{one_company.financials.debt | number}}
           %li
             Debt Due:
             .financial {{one_company.financials.debt_due}}
           %li
-            Burn:
-            .finacial {{one_company.financials.burn}}
+            Annualized Burn:
+            .financial {{one_company.financials.burn | number}}
           %li
             Runway:
-            .financial {{one_company.financials.runway}}
+            .financial {{one_company.financials.runway | number}} Years
+          %li
+            3 Month Average Daily Volume:
+            .financial {{one_company.financials.three_month_volume | number}}
+          %li
+            3 Month Average Daily $ Volume
+            .measurement (in $ millions):
+            .financial ${{one_company.financials.three_month_dollar_volume | number:2}}
       .row.edit-and-destroy
         %a.btn.edit{:'ng-click' => 'edit_company(one_company.id)', type: :submit, method: :get}= 'Edit Company'
         %a.btn.destroy{:'ng-click' => 'delete_company(one_company.id)', :'ng-confirm-click' => "Are you sure?"}= 'Delete Company'
@@ -84,7 +88,7 @@
               .subject{:'ng-show' => 'i.subject'} {{i.subject}}
               {{i.text}}
       .row#Other
-        %h3= 'Other Details'
+        %h3= 'Other Details and Notes'
         .preserve-style {{one_company.sec_filings}}
 
 

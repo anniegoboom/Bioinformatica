@@ -1,0 +1,47 @@
+.error-explanation
+  - if @company.errors.any?
+    %h5= 'Please fix the following errors:'
+    %ul
+      - @company.errors.full_messages.each do |msg|
+        %li= msg
+.input-content
+  %ul.no-style
+    %li
+      = 'Name:'
+      .input-field= c.text_field :name
+    %li
+      = 'Ticker:'
+      .input-field= c.text_field :ticker
+    %li
+      = 'Price:'
+      .input-field= c.text_field :price
+    %li
+      = '52-week High:'
+      .input-field= c.text_field :'52_week_high'
+    %li
+      = '52-week Low:'
+      .input-field= c.text_field :'52_week_low'
+    %li
+      = 'Shares Out (in millions):'
+      .input-field= c.text_field :shares_out
+    %li
+      = 'Cash (in millions):'
+      .input-field= c.text_field :cash
+    %li
+      = 'Debt (in millions):'
+      .input-field= c.text_field :debt
+    %li
+      = 'Debt Due:'
+      .input-field= c.text_field :debt_due
+    %li
+      = 'Burn:'
+      .input-field= c.text_field :burn
+    %li
+      = '3 Month Average Daily Volume:'
+      .input-field= c.text_field :three_month_volume
+    %li
+      = 'Other Details and Notes'
+      .input-field= c.text_area :other
+
+.create-button
+  = c.submit

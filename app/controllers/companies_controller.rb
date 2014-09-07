@@ -25,13 +25,13 @@ class CompaniesController < ApplicationController
           shares_out: company.shares_out,
           three_month_volume: company.three_month_volume,
           burn: company.burn,
-          runway: company.runway,
+          debt: company.debt,
           debt_due: company.debt_due
         }
 
-      add_calculated_financial(:market_cap, company.price, company.shares_out)
-      add_calculated_financial(:three_month_dollar_volume, company.price, company.three_month_volume)
-      add_commas_to_large_numbers_in_financials
+      add_calculated_financial(:market_cap, company.price, company.shares_out, "*")
+      add_calculated_financial(:three_month_dollar_volume, company.price, company.three_month_volume, "*")
+      add_calculated_financial(:runway, company.cash, company.burn, '/')
 
       programs = company.programs.map do |p|
         {
@@ -55,7 +55,7 @@ class CompaniesController < ApplicationController
           financials: @financials,
           timeline_snippets: timeline_snippets,
           diligence_snippets: diligence_snippets,
-          sec_filings: company.sec_filings
+          other: company.other
           }]
       render_json
     end
@@ -101,12 +101,17 @@ class CompaniesController < ApplicationController
     @financials.each {|k,v| @financials[k] = add_commas_to_large_number(v) }
   end
 
-  def add_commas_to_large_number(number)
-    number_with_delimiter(number) if number.present?
-  end
+  def add_calculated_financial(symbol, first_item, second_item, operation)
+    return nil unless first_item.present? && second_item.present? && operation.present?
 
-  def add_calculated_financial(symbol, first_item, second_item)
-    @financials = @financials.merge({ symbol => first_item * second_item}) if first_item.present? && second_item.present?
+    case operation
+    when "*"
+      @financials = @financials.merge({ symbol => first_item * second_item})
+    when "/"
+      @financials = @financials.merge({ symbol => first_item / second_item})
+    else
+      nil
+    end
   end
 
   def company_params
@@ -120,10 +125,10 @@ class CompaniesController < ApplicationController
       :cash,
       :shares_out,
       :three_month_volume,
+      :debt,
       :debt_due,
       :burn,
-      :runway,
-      :sec_filings
+      :other
     )
   end
 
