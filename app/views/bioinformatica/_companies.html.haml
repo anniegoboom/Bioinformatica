@@ -15,43 +15,47 @@
         %ul.no-style
           %li
             Price:
-            .financial ${{one_company.financials.price}}
+            .financial ${{one_company.financials.price | number:2}}
           %li
             52-week high:
-            .financial ${{one_company.financials.f52high}}
+            .financial ${{one_company.financials.f52high | number:2}}
           %li
             52-week low:
-            .financial ${{one_company.financials.f52low}}
+            .financial ${{one_company.financials.f52low | number:2}}
           %li
-            Cash:
-            .financial ${{one_company.financials.cash}}
+            Cash (in millions):
+            .financial ${{one_company.financials.cash | number}}
           %li
-            Market Cap:
-            .financial ${{one_company.financials.market_cap}}
+            Shares Out (in millions):
+            .financial {{one_company.financials.shares_out | number:2}}
           %li
-            Shares Out:
-            .financial {{one_company.financials.shares_out}}
+            Market Cap (in millions):
+            .financial ${{one_company.financials.market_cap | number:2}}
           %li
-            3 Month Average Daily Volume:
-            .financial {{one_company.financials.three_month_volume}}
+            Cash (in millions):
+            .financial ${{one_company.financials.cash | number}}
           %li
-            3 Month Average Daily $ Volume:
-            .financial ${{one_company.financials.three_month_dollar_volume}}
+            Debt (in millions):
+            .financial ${{one_company.financials.debt | number}}
           %li
             Debt Due:
-            .financial ${{one_company.financials.debt_due}}
+            .financial {{one_company.financials.debt_due | date: 'MM/yyyy'}}
           %li
-            Burn:
-            .finacial {{one_company.financials.burn}}
+            Annualized Burn:
+            .financial {{one_company.financials.burn | number}}
           %li
             Runway:
-            .financial {{one_company.financials.runway}}
+            .financial {{one_company.financials.runway | number}} Years
+          %li
+            3 Month Average Daily Volume:
+            .financial {{one_company.financials.three_month_volume | number}}
+          %li
+            3 Month Average Daily $ Volume
+            .measurement (in $ millions):
+            .financial ${{one_company.financials.three_month_dollar_volume | number:2}}
       .row.edit-and-destroy
-        %ul.no-style
-          %li
-            %a.edit{:'ng-click' => 'edit_company(one_company.id)'}= 'Edit Company Financials'
-          %li
-            %a.destroy{:'ng-click' => 'delete_company(one_company.id)', :'ng-confirm-click' => "Are you sure?"}= 'Delete Company'
+        %a.btn.edit{:'ng-click' => 'edit_company(one_company.id)', type: :submit, method: :get}= 'Edit Company'
+        %a.btn.destroy{:'ng-click' => 'delete_company(one_company.id)', :'ng-confirm-click' => "Are you sure?"}= 'Delete Company'
     .span8#company-details
       .row#product-pipeline
         %h3= 'Drug Pipeline'
@@ -73,18 +77,18 @@
         %h3= 'Timeline'
         %table
           %tr.snippet{:'ng-repeat' => 's in one_company.timeline_snippets'}
-            %td.date {{s.event_date}}
+            %td.date {{s.event_date | date: 'MM/yyyy'}}
             %td.catalyst
               %a{:'ng-click' => 'select_snippet(s.id)'} {{s.text}}
       .row#diligence
         %h3= 'Diligence'
         %ul.no-style
           %li.info-snippet{:'ng-repeat' => 'i in one_company.diligence_snippets'}
-            %a{:'ng-click' => "select_snippet(i.id)"}
+            %a.preserve-style{:'ng-click' => "select_snippet(i.id)"}
               .subject{:'ng-show' => 'i.subject'} {{i.subject}}
               {{i.text}}
-      .row#SEC
-        %h3= 'SEC Filings'
-        {{one_company.sec_filings}}
+      .row#Other
+        %h3= 'Other Details and Notes'
+        .preserve-style {{one_company.sec_filings}}
 
 

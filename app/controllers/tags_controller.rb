@@ -68,6 +68,7 @@ class TagsController < ApplicationController
   def edit
     @tag = Tag.find(params[:id])
     @tag_types = TagType.by_name
+    @current_type_id = @tag.tag_type_id
   end
 
   def update

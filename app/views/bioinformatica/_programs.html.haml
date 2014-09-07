@@ -1,34 +1,29 @@
 #programs-container{:'ng-controller' => 'programs_controller'}
-  .container#programs-list{:'ng-show' => '!one_program'}
-    .row.header
-      %h3= 'Drugs'
-    .row.list
-      %ul.no-style
-        %li.program{:'ng-repeat' => 'p in programs'}
-          %a{:'ng-click' => "select_drug(p.id)"}= "{{p.name}}"
-  .container#one-program{:'ng-show' => 'one_program'}
-    .row.header
+  .row#programs-list{:'ng-show' => '!one_program'}
+    %h3= 'Drugs'
+    %ul.no-style
+      %li.program{:'ng-repeat' => 'p in programs'}
+        %a{:'ng-click' => "select_drug(p.id)"}= "{{p.name}}"
+  .row#one-program{:'ng-show' => 'one_program'}
+    .header
       %h3 {{one_program.name}}
-      %p {{one_program.description}}
-    .row.timeline-snippets
+      .preserve-style {{one_program.description}}
+    .timeline-snippets
       %h3= 'Timeline'
       %table
         %tr.snippet{:'ng-repeat' => 's in one_program.timeline_snippets'}
           %td.date {{s.event_date}}
           %td.catalyst
             %a{:'ng-click' => 'select_snippet(s.id)'}= "{{s.text}}"
-    .row.companies
+    .companies
       %h3= 'Companies'
       %ul.no-style
         %li.company{:'ng-repeat' => 'c in one_program.companies'}
           %a{:'ng-click' => 'select_company(c.id)'}="{{c.name}}"
 
-    .row.edit-and-destroy
-      %ul.no-style
-        %li
-          %a.edit{:'ng-click' => 'edit_drug(one_program.id)'}= 'Edit Drug'
-        %li
-          %a.destroy{:'ng-click' => 'delete_drug(one_program.id)', :'ng-confirm-click' => "Are you sure?"}= 'Delete Drug'
+    .edit-and-destroy
+      %a.btn.edit{:'ng-click' => 'edit_drug(one_program.id)'}= 'Edit Drug'
+      %a.btn.destroy{:'ng-click' => 'delete_drug(one_program.id)', :'ng-confirm-click' => "Are you sure?"}= 'Delete Drug'
 
-    .row.back
-      %a{:'ng-click' => 'select_all()'}= '<-- Back to All Programs'
+    .back
+      %a{:'ng-click' => 'select_all()'}= '<-- Back to All Drugs'

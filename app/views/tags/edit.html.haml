@@ -15,7 +15,7 @@
         %ul.no-style
           %li
             = 'Tag Type'
-            .input-field= t.select :tag_type_id, options_from_collection_for_select(@tag_types, 'id', 'name', 3)
+            .input-field= t.select :tag_type_id, options_from_collection_for_select(@tag_types, 'id', 'name', @current_type_id)
           %li
             = 'Name:'
             .input-field= t.text_field :name

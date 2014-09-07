@@ -1,0 +1,43 @@
+.error-explanation
+  - if @info.errors.any?
+    %h5= 'Please fix the following errors:'
+    %ul
+      - @info.errors.full_messages.each do |msg|
+        %li= msg
+.input-content
+  %ul.no-style
+    %li
+      = 'Subject'
+      .input-field= i.text_field :subject
+    %li
+      = 'Snippet'
+      .input-field= i.text_area :text, label: false
+    %li
+      = 'Date'
+      .input-field= i.date_select :event_date, :include_blank => true
+    %li
+      %h3= 'Company'
+      - for company in Company.all
+        .company
+          = check_box_tag "companies[]", company.id, @info.companies.include?(company)
+          = company.ticker
+    %li
+      %h3= 'Drug'
+      - for drug in Program.all
+        .drug
+          = check_box_tag "drugs[]", drug.id, @info.programs.include?(drug)
+          = drug.name
+    %li
+      %h3= 'Tags'
+      .tags-selection-container
+        - for type in TagType.all
+          - if type.tags.length > 0
+            .row
+              %h5= type.name
+              - for tag in type.tags
+                .tag
+                  = check_box_tag "tags[]", tag.id, @info.tags.include?(tag)
+                  = tag.name
+
+.create-button
+  = i.submit 'Submit Snippet'

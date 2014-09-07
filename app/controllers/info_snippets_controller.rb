@@ -20,12 +20,26 @@ class InfoSnippetsController < ApplicationController
 
   def show
     snippet = InfoSnippet.find_by_id(params[:id])
+    companies = snippet.companies.map do |company|
+      {
+        id: company.id,
+        ticker: company.ticker
+      }
+    end
+    drugs = snippet.programs.map do |program|
+      {
+        id: program.id,
+        name: program.name
+      }
+    end
     @info_hash =
       [{
         id: snippet.id,
         subject: snippet.subject,
         text: snippet.text,
         event_date: snippet.event_date,
+        companies: companies,
+        drugs: drugs,
         created_at: snippet.created_at,
         updated_at: snippet.updated_at
       }]
@@ -34,8 +48,6 @@ class InfoSnippetsController < ApplicationController
 
   def new
     @info = InfoSnippet.new
-    @companies = Company.by_name
-    @drugs = Program.by_name
   end
 
   def create
@@ -48,19 +60,16 @@ class InfoSnippetsController < ApplicationController
     if @info.save
       redirect_to '/#/snippet'
     else
-      @companies = Company.by_name
-      @drugs = Program.by_name
       render :new
     end
   end
 
   def edit
     @info = InfoSnippet.find(params[:id])
-    @companies = Company.by_name
-    @drugs = Program.by_name
   end
 
   def update
+    update_params = info_snippet_params
     snippet_id = params.require(:id)
     @info = InfoSnippet.find(snippet_id)
 
@@ -68,11 +77,9 @@ class InfoSnippetsController < ApplicationController
     @info.program_ids = @selected_drugs if @selected_drugs.present?
     @info.tag_ids = @selected_tags if @selected_tags.present?
 
-    if @info.update_attributes(info_snippet_params)
+    if @info.update_attributes(update_params)
       redirect_to "/#/snippet=#{snippet_id}"
     else
-      @companies = Company.by_name
-      @drugs = Program.by_name
       render :edit
     end
   end
@@ -91,8 +98,8 @@ class InfoSnippetsController < ApplicationController
   def info_snippet_params
     info_snippet = params.require(:info_snippet)
 
-    @selected_companies = info_snippet[:company_ids]
-    @selected_drugs = info_snippet[:program_ids]
+    @selected_companies = params[:companies]
+    @selected_drugs = params[:drugs]
     @selected_tags = params[:tags]
 
     info_snippet.permit(

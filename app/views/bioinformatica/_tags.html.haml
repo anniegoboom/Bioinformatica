@@ -14,11 +14,8 @@
       .tag
         %a{:'ng-click' => "select_tag(one_tag.id)"}= "{{one_tag.name}}"
     .row.edit-and-destroy
-      %ul.no-style
-        %li
-          %a.edit{:'ng-click' => 'edit_tag(one_tag.id)'}= 'Edit Tag'
-        %li
-          %a.destroy{:'ng-click' => 'delete_tag(one_tag.id)', :'ng-confirm-click' => "Are you sure?"}= 'Delete Tag'
+      %a.btn.edit{:'ng-click' => 'edit_tag(one_tag.id)'}= 'Edit Tag'
+      %a.btn.destroy{:'ng-click' => 'delete_tag(one_tag.id)', :'ng-confirm-click' => "Are you sure?"}= 'Delete Tag'
     %h3= "Companies"
     .company{:'ng-repeat' => 'company in one_tag.companies'}
       %a{:'ng-click' => "select_company(company.id)"}= "{{company.ticker}}"
