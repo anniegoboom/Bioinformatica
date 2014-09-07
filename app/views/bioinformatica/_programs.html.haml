@@ -1,11 +1,9 @@
 #programs-container{:'ng-controller' => 'programs_controller'}
   .row#programs-list{:'ng-show' => '!one_program'}
-    .row.header
-      %h3= 'Drugs'
-    .row.list
-      %ul.no-style
-        %li.program{:'ng-repeat' => 'p in programs'}
-          %a{:'ng-click' => "select_drug(p.id)"}= "{{p.name}}"
+    %h3= 'Drugs'
+    %ul.no-style
+      %li.program{:'ng-repeat' => 'p in programs'}
+        %a{:'ng-click' => "select_drug(p.id)"}= "{{p.name}}"
   .row#one-program{:'ng-show' => 'one_program'}
     .row.header
       %h3 {{one_program.name}}
