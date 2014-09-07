@@ -6,7 +6,7 @@
         %a{:'ng-click' => "select_snippet(i.id)"}
           .subject{:'ng-show' => 'i.subject'}= "{{i.subject}}"
           .preserve-style {{i.text}}
-          .event-date{:'ng-show' => 'i.event_date'}= "Date: {{i.event_date}}"
+          .event-date{:'ng-show' => 'i.event_date'}= "Date: {{i.event_date | date: 'MM/dd/yyyy'}}"
   .row#one-snippet-extras{:'ng-show' => 'showing_one_snippet'}
     .companies
       %h3= 'Companies'

@@ -13,7 +13,6 @@ class Company < ActiveRecord::Base
   validates_numericality_of :burn, allow_nil: true
   validates_numericality_of :three_month_volume, allow_nil: true
   validates_numericality_of :debt, allow_nil: true
-  validates_numericality_of :debt_due, allow_nil: true
 
   attr_accessible :name, :ticker, :price, :'52_week_high', :'52_week_low', :cash,
                   :shares_out, :burn, :three_month_volume, :debt, :debt_due,

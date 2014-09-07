@@ -32,7 +32,7 @@
       .input-field= c.text_field :debt
     %li
       = 'Debt Due:'
-      .input-field= c.text_field :debt_due
+      .input-field= c.date_select :debt_due, :include_blank => true
     %li
       = 'Burn:'
       .input-field= c.text_field :burn
