@@ -5,25 +5,25 @@
       %li.program{:'ng-repeat' => 'p in programs'}
         %a{:'ng-click' => "select_drug(p.id)"}= "{{p.name}}"
   .row#one-program{:'ng-show' => 'one_program'}
-    .row.header
+    .header
       %h3 {{one_program.name}}
       .preserve-style {{one_program.description}}
-    .row.timeline-snippets
+    .timeline-snippets
       %h3= 'Timeline'
       %table
         %tr.snippet{:'ng-repeat' => 's in one_program.timeline_snippets'}
           %td.date {{s.event_date}}
           %td.catalyst
             %a{:'ng-click' => 'select_snippet(s.id)'}= "{{s.text}}"
-    .row.companies
+    .companies
       %h3= 'Companies'
       %ul.no-style
         %li.company{:'ng-repeat' => 'c in one_program.companies'}
           %a{:'ng-click' => 'select_company(c.id)'}="{{c.name}}"
 
-    .row.edit-and-destroy
+    .edit-and-destroy
       %a.btn.edit{:'ng-click' => 'edit_drug(one_program.id)'}= 'Edit Drug'
       %a.btn.destroy{:'ng-click' => 'delete_drug(one_program.id)', :'ng-confirm-click' => "Are you sure?"}= 'Delete Drug'
 
-    .row.back
+    .back
       %a{:'ng-click' => 'select_all()'}= '<-- Back to All Programs'
