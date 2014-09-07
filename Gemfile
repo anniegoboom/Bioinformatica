@@ -15,7 +15,6 @@ gem 'jquery-rails'
 gem 'jquery-ui-sass-rails',   '4.0.3.0'
 gem 'twitter-bootstrap-rails'
 gem 'activeadmin'
-gem 'strong_parameters'
 
 # Gems used only for assets and not required
 # in production environments by default.

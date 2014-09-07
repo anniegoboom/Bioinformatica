@@ -108,6 +108,7 @@ class CompaniesController < ApplicationController
     when "*"
       @financials = @financials.merge({ symbol => first_item * second_item})
     when "/"
+      return nil if second_item < 1
       @financials = @financials.merge({ symbol => first_item / second_item})
     else
       nil
