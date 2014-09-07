@@ -5,7 +5,7 @@
       %li.info-snippet{:'ng-repeat' => 'i in info_snippets'}
         %a{:'ng-click' => "select_snippet(i.id)"}
           .subject{:'ng-show' => 'i.subject'}= "{{i.subject}}"
-          .snippet-text {{i.text}}
+          .preserve-style {{i.text}}
           .event-date{:'ng-show' => 'i.event_date'}= "Date: {{i.event_date}}"
   .row#one-snippet-extras{:'ng-show' => 'info_snippets.length == 1'}
     .companies

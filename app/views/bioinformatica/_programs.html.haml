@@ -9,7 +9,7 @@
   .row#one-program{:'ng-show' => 'one_program'}
     .row.header
       %h3 {{one_program.name}}
-      %p {{one_program.description}}
+      .preserve-style {{one_program.description}}
     .row.timeline-snippets
       %h3= 'Timeline'
       %table

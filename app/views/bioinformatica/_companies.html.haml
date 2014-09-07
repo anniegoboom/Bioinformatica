@@ -80,11 +80,11 @@
         %h3= 'Diligence'
         %ul.no-style
           %li.info-snippet{:'ng-repeat' => 'i in one_company.diligence_snippets'}
-            %a{:'ng-click' => "select_snippet(i.id)"}
+            %a.preserve-style{:'ng-click' => "select_snippet(i.id)"}
               .subject{:'ng-show' => 'i.subject'} {{i.subject}}
               {{i.text}}
       .row#Other
         %h3= 'Other Details'
-        {{one_company.sec_filings}}
+        .preserve-style {{one_company.sec_filings}}
 
 
