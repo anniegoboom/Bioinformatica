@@ -7,7 +7,6 @@ gem 'rails', '3.2.13'
 
 gem 'mysql2',                 '0.3.15'
 gem 'haml'
-gem 'strong_parameters'
 gem 'angularjs-rails'
 gem 'activerecord-mysql-adapter'
 gem 'unicorn'
@@ -16,6 +15,7 @@ gem 'jquery-ui-sass-rails',   '4.0.3.0'
 gem 'twitter-bootstrap-rails'
 gem 'activeadmin'
 gem 'strong_parameters'
+gem 'devise'
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -201,6 +201,7 @@ DEPENDENCIES
   activerecord-postgresql-adapter
   angularjs-rails
   coffee-rails (~> 3.2.1)
+  devise
   haml
   jquery-rails
   jquery-ui-sass-rails (= 4.0.3.0)
