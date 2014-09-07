@@ -34,9 +34,6 @@ class ProgramsController < ApplicationController
 
   def new
     @drug = Program.new
-    @companies = Company.by_name
-
-    #@drug.company_ids = params[:company_id]
   end
 
   def create
@@ -47,14 +44,12 @@ class ProgramsController < ApplicationController
     if @drug.save
       redirect_to '/#/drug'
     else
-      @companies = Company.by_name
       render :new
     end
   end
 
   def edit
     @drug = Program.find(params[:id])
-    @companies = Company.by_name
   end
 
   def update
@@ -67,7 +62,6 @@ class ProgramsController < ApplicationController
     if @drug.update_attributes(update_params)
       redirect_to "/#/drug=#{@drug.id}"
     else
-      @companies = Company.by_name
       render :edit
     end
   end
@@ -82,7 +76,7 @@ class ProgramsController < ApplicationController
   def drug_params
     drug_info = params.require(:program)
 
-    @selected_company = drug_info[:company_ids] || @selected_company
+    @selected_company = params[:companies]
     @selected_tags = params[:tags]
 
     drug_info.permit(

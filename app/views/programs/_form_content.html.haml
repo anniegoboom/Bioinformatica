@@ -6,12 +6,6 @@
         %li= msg
 .input-content
   %ul.no-style
-    - if @drug.companies[0].present?
-      %li
-        = "( Currently Company: #{@drug.companies[0].ticker} )"
-    %li
-      = 'Change Company'
-      .input-field= d.select :company_ids, options_from_collection_for_select(@companies, 'id', 'ticker'), {include_blank: true }
     %li
       = 'Name:'
       .input-field= d.text_field :name
@@ -19,7 +13,13 @@
       = 'Description:'
       .input-field
         = d.text_area :description, label: false
-    %li.tags-selection-container
+    %li
+      %h3= 'Company'
+      - for company in Company.all
+        .company
+          = check_box_tag "companies[]", company.id, @drug.companies.include?(company)
+          = company.ticker
+    %li
       %h3= 'Tags'
       .tags-selection-container
         - for type in TagType.all

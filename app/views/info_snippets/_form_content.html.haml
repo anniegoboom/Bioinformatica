@@ -16,11 +16,17 @@
       = 'Date'
       .input-field= i.date_select :event_date, :include_blank => true
     %li
-      = 'Company'
-      .input-field= i.select :company_ids, options_from_collection_for_select(@companies, 'id', 'ticker'), {include_blank: true }
+      %h3= 'Company'
+      - for company in Company.all
+        .company
+          = check_box_tag "companies[]", company.id, @info.companies.include?(company)
+          = company.ticker
     %li
-      = 'Drug'
-      .input-field= i.select :program_ids, options_from_collection_for_select(@drugs, 'id', 'name'), {include_blank: true }
+      %h3= 'Drug'
+      - for drug in Program.all
+        .drug
+          = check_box_tag "drugs[]", drug.id, @info.programs.include?(drug)
+          = drug.name
     %li
       %h3= 'Tags'
       .tags-selection-container
