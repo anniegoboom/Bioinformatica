@@ -20,13 +20,13 @@
       = 'Date'
       .input-field= i.date_select :event_date, :include_blank => true
     %li
-      %h3= 'Company'
+      %h3= 'Companies'
       - for company in Company.all
         .company
           = check_box_tag "companies[]", company.id, @info.companies.include?(company)
           = company.ticker
     %li
-      %h3= 'Drug'
+      %h3= 'Drugs'
       - for drug in Program.all
         .drug
           = check_box_tag "drugs[]", drug.id, @info.programs.include?(drug)

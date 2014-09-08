@@ -14,7 +14,7 @@
       .input-field
         = d.text_area :description, label: false
     %li
-      %h3= 'Company'
+      %h3= 'Companies'
       - for company in Company.all
         .company
           = check_box_tag "companies[]", company.id, @drug.companies.include?(company)
