@@ -92,6 +92,6 @@
           = button_to 'New Snippet', new_info_snippet_path, method: :get
       .row#other
         %h3= 'Other Details and Notes'
-        .preserve-style {{one_company.other}}
+        .preserve-style{:'ng-show' => 'one_company.other'} {{one_company.other}}
 
 
