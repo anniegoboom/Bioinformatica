@@ -14,7 +14,7 @@
         %tr.snippet{:'ng-repeat' => 's in one_program.timeline_snippets'}
           %td.date {{s.event_date}}
           %td.catalyst
-            %a{:'ng-click' => 'select_snippet(s.id)'}= "{{s.text}}"
+            %a{:'ng-click' => 'select_snippet(s.id)'} {{s.text}}
     .diligence-snippets
       %h3= 'Diligence'
       %ul.no-style
