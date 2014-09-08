@@ -13,6 +13,10 @@
       = 'Snippet'
       .input-field= i.text_area :text, label: false
     %li
+      .timeline-snippet-select
+        = check_box_tag 'timeline_snippet', :timeline_snippet, @info.timeline_snippet
+        This is a Timeline Snippet.
+    %li
       = 'Date'
       .input-field= i.date_select :event_date, :include_blank => true
     %li

@@ -20,13 +20,18 @@ class ProgramsController < ApplicationController
         name: c.name
       }
     end
-    timeline_snippets = program.info_snippets.by_date_r
+
+    snippets = program.info_snippets.by_date_r
+    timeline_snippets = snippets.select {|s| s.timeline_snippet}
+    diligence_snippets = snippets - timeline_snippets
+
     @program_hash =
       [{
         id: program.id,
         name: program.name,
         description: program.description,
         timeline_snippets: timeline_snippets,
+        diligence_snippets: diligence_snippets,
         companies: companies
         }]
     render_json

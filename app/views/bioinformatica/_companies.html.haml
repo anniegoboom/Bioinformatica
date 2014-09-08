@@ -59,18 +59,16 @@
     .span8#company-details
       .row#product-pipeline
         %h3= 'Drug Pipeline'
-        %table{:'ng-repeat' => 'p in one_company.programs'}
-          %tr.program-description
+        %table
+          %tr.program-description{:'ng-repeat' => 'p in one_company.programs'}
             %td.program-name
               %a{:'ng-click' => "select_program(p.id)"}= "{{p.name}}"
-            %td="{{p.description}}"
-          %tr.program-tags
             %td
-            %td
-              .tags-container
+              {{p.description}}
+              .program-tags
                 .tag{:'ng-repeat' => 't in p.tags'}
                   %a{:'ng-click' => "select_tag(t.id)"}= "{{t.name}}"
-      .row
+      .row.new-snippet-buton
         = button_to 'New Drug', new_program_path(company_id: "{{one_company.id}}"), method: :get
 
       .row#timeline
@@ -79,16 +77,21 @@
           %tr.snippet{:'ng-repeat' => 's in one_company.timeline_snippets'}
             %td.date {{s.event_date | date: 'MM/yyyy'}}
             %td.catalyst
-              %a{:'ng-click' => 'select_snippet(s.id)'} {{s.text}}
+              %a{:'ng-click' => 'select_snippet(s.id)'} {{s.subject}} -- {{s.text}}
+        .new-snippet-buton
+          = button_to 'New Snippet', new_info_snippet_path, method: :get
       .row#diligence
         %h3= 'Diligence'
         %ul.no-style
-          %li.info-snippet{:'ng-repeat' => 'i in one_company.diligence_snippets'}
-            %a.preserve-style{:'ng-click' => "select_snippet(i.id)"}
-              .subject{:'ng-show' => 'i.subject'} {{i.subject}}
-              {{i.text}}
-      .row#Other
+          %li.info-snippet{:'ng-repeat' => 's in one_company.diligence_snippets'}
+            %a.preserve-style{:'ng-click' => "select_snippet(s.id)"}
+              .subject{:'ng-show' => 's.subject'} {{s.subject}}
+              .scrollable {{s.text}}
+            .event-date{:'ng-show' => 's.event_date'}= "Date: {{s.event_date | date: 'MM/dd/yyyy'}}"
+        .new-snippet-buton
+          = button_to 'New Snippet', new_info_snippet_path, method: :get
+      .row#other
         %h3= 'Other Details and Notes'
-        .preserve-style {{one_company.sec_filings}}
+        .preserve-style {{one_company.other}}
 
 

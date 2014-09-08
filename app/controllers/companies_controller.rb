@@ -43,7 +43,7 @@ class CompaniesController < ApplicationController
       end
 
       snippets = company.info_snippets.by_date_r
-      timeline_snippets = snippets.select {|s| s.event_date.present?}
+      timeline_snippets = snippets.select {|s| s.timeline_snippet}
       diligence_snippets = snippets - timeline_snippets
 
       @company_hash =

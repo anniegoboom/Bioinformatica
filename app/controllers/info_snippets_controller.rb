@@ -56,6 +56,7 @@ class InfoSnippetsController < ApplicationController
     @info.company_ids = @selected_companies if @selected_companies.present?
     @info.program_ids = @selected_drugs if @selected_drugs.present?
     @info.tag_ids = @selected_tags if @selected_tags.present?
+    @info.timeline_snippet = @is_a_timeline_snippet
 
     if @info.save
       redirect_to '/#/snippet'
@@ -76,6 +77,7 @@ class InfoSnippetsController < ApplicationController
     @info.company_ids = @selected_companies if @selected_companies.present?
     @info.program_ids = @selected_drugs if @selected_drugs.present?
     @info.tag_ids = @selected_tags if @selected_tags.present?
+    @info.timeline_snippet = @is_a_timeline_snippet
 
     if @info.update_attributes(update_params)
       redirect_to "/#/snippet=#{snippet_id}"
@@ -101,6 +103,7 @@ class InfoSnippetsController < ApplicationController
     @selected_companies = params[:companies]
     @selected_drugs = params[:drugs]
     @selected_tags = params[:tags]
+    @is_a_timeline_snippet = params[:timeline_snippet].present?
 
     info_snippet.permit(
       :subject,
