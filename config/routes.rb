@@ -1,10 +1,14 @@
 Bioinformatica::Application.routes.draw do
 
-  devise_for :users
-
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config
+
+  if Rails.env.production?
+    devise_for :users, :controllers => { :registrations => "registrations" }
+  else
+    devise_for :users
+  end
 
   resources :info_snippets do
     resources :tags, :only => [:index]
