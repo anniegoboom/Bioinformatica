@@ -15,6 +15,14 @@
           %td.date {{s.event_date}}
           %td.catalyst
             %a{:'ng-click' => 'select_snippet(s.id)'}= "{{s.text}}"
+    .diligence-snippets
+      %h3= 'Diligence'
+      %ul.no-style
+        %li.info-snippet{:'ng-repeat' => 's in one_program.diligence_snippets'}
+          %a.preserve-style{:'ng-click' => "select_snippet(s.id)"}
+            .subject{:'ng-show' => 's.subject'} {{s.subject}}
+            {{s.text}}
+          .event-date{:'ng-show' => 's.event_date'}= "Date: {{s.event_date | date: 'MM/dd/yyyy'}}"
     .companies
       %h3= 'Companies'
       %ul.no-style
