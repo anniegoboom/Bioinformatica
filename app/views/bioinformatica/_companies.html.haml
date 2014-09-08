@@ -77,7 +77,7 @@
           %tr.snippet{:'ng-repeat' => 's in one_company.timeline_snippets'}
             %td.date {{s.event_date | date: 'MM/yyyy'}}
             %td.catalyst
-              %a{:'ng-click' => 'select_snippet(s.id)'} {{s.subject}} -- {{s.text}}
+              %a{:'ng-click' => 'select_snippet(s.id)'} {{s.text}}
         .new-snippet-buton
           = button_to 'New Snippet', new_info_snippet_path, method: :get
       .row#diligence
@@ -86,12 +86,12 @@
           %li.info-snippet{:'ng-repeat' => 's in one_company.diligence_snippets'}
             %a.preserve-style{:'ng-click' => "select_snippet(s.id)"}
               .subject{:'ng-show' => 's.subject'} {{s.subject}}
-              .scrollable {{s.text}}
+              .scrollable.one-color {{s.text}}
             .event-date{:'ng-show' => 's.event_date'}= "Date: {{s.event_date | date: 'MM/dd/yyyy'}}"
         .new-snippet-buton
           = button_to 'New Snippet', new_info_snippet_path, method: :get
       .row#other
         %h3= 'Other Details and Notes'
-        .preserve-style {{one_company.other}}
+        .preserve-style{:'ng-show' => 'one_company.other'} {{one_company.other}}
 
 
