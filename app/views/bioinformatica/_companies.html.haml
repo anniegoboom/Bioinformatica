@@ -86,7 +86,7 @@
           %li.info-snippet{:'ng-repeat' => 's in one_company.diligence_snippets'}
             %a.preserve-style{:'ng-click' => "select_snippet(s.id)"}
               .subject{:'ng-show' => 's.subject'} {{s.subject}}
-              .scrollable {{s.text}}
+              .scrollable.one-color {{s.text}}
             .event-date{:'ng-show' => 's.event_date'}= "Date: {{s.event_date | date: 'MM/dd/yyyy'}}"
         .new-snippet-buton
           = button_to 'New Snippet', new_info_snippet_path, method: :get
