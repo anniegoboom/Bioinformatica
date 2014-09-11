@@ -6,7 +6,7 @@
         %a{:'ng-click' => "select_company(c.id)"}
           .span{:'ng-show' => "c.ticker"} [ {{c.ticker}} ]
           {{c.name}}
-  .container#company-description{:'ng-show' => 'one_company', :'ng-cloak' => 'true'}
+  .container#company-description{:'ng-hide' => '!one_company', :'ng-cloak' => 'true'}
     %a{:'ng-click' => 'select_all()'}= '<-- Back to All Companies'
     %h1 {{one_company.name}} ({{one_company.ticker}})
     .span3
