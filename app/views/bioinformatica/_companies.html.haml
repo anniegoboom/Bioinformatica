@@ -6,92 +6,93 @@
         %a{:'ng-click' => "select_company(c.id)"}
           .span{:'ng-show' => "c.ticker"} [ {{c.ticker}} ]
           {{c.name}}
-  .container#company-description(ng-show='one_company' ng-cloak)
-    %a{:'ng-click' => 'select_all()'}= '<-- Back to All Companies'
-    %h1 {{one_company.name}} ({{one_company.ticker}})
-    .span3
-      .row#company-financials
-        %h3= 'Financials'
-        %ul.no-style
-          %li
-            Price:
-            .financial ${{one_company.financials.price | number:2}}
-          %li
-            52-week high:
-            .financial ${{one_company.financials.f52high | number:2}}
-          %li
-            52-week low:
-            .financial ${{one_company.financials.f52low | number:2}}
-          %li
-            Cash (in millions):
-            .financial ${{one_company.financials.cash | number}}
-          %li
-            Shares Out (in millions):
-            .financial {{one_company.financials.shares_out | number:2}}
-          %li
-            Market Cap (in millions):
-            .financial ${{one_company.financials.market_cap | number:2}}
-          %li
-            Cash (in millions):
-            .financial ${{one_company.financials.cash | number}}
-          %li
-            Debt (in millions):
-            .financial ${{one_company.financials.debt | number}}
-          %li
-            Debt Due:
-            .financial {{one_company.financials.debt_due | date: 'MM/yyyy'}}
-          %li
-            Annualized Burn:
-            .financial {{one_company.financials.burn | number}}
-          %li
-            Runway:
-            .financial {{one_company.financials.runway | number}} Years
-          %li
-            3 Month Average Daily Volume:
-            .financial {{one_company.financials.three_month_volume | number}}
-          %li
-            3 Month Average Daily $ Volume
-            .measurement (in $ millions):
-            .financial ${{one_company.financials.three_month_dollar_volume | number:2}}
-      .row.edit-and-destroy
-        %a.btn.edit{:'ng-click' => 'edit_company(one_company.id)', type: :submit, method: :get}= 'Edit Company'
-        %a.btn.destroy{:'ng-click' => 'delete_company(one_company.id)', :'ng-confirm-click' => "Are you sure?"}= 'Delete Company'
-    .span8#company-details
-      .row#product-pipeline
-        %h3= 'Drug Pipeline'
-        %table
-          %tr.program-description{:'ng-repeat' => 'p in one_company.programs'}
-            %td.program-name
-              %a{:'ng-click' => "select_program(p.id)"}= "{{p.name}}"
-            %td
-              {{p.description}}
-              .program-tags
-                .tag{:'ng-repeat' => 't in p.tags'}
-                  %a{:'ng-click' => "select_tag(t.id)"}= "{{t.name}}"
-      .row.new-snippet-buton
-        = button_to 'New Drug', new_program_path(company_id: "{{one_company.id}}"), method: :get
+  .container#company-description{:'ng-show' => 'one_company', :'class' => 'ng-cloak'}
+    .ng-cloak
+      %a{:'ng-click' => 'select_all()'}= '<-- Back to All Companies'
+      %h1 {{one_company.name}} ({{one_company.ticker}})
+      .span3
+        .row#company-financials
+          %h3= 'Financials'
+          %ul.no-style
+            %li
+              Price:
+              .financial ${{one_company.financials.price | number:2}}
+            %li
+              52-week high:
+              .financial ${{one_company.financials.f52high | number:2}}
+            %li
+              52-week low:
+              .financial ${{one_company.financials.f52low | number:2}}
+            %li
+              Cash (in millions):
+              .financial ${{one_company.financials.cash | number}}
+            %li
+              Shares Out (in millions):
+              .financial {{one_company.financials.shares_out | number:2}}
+            %li
+              Market Cap (in millions):
+              .financial ${{one_company.financials.market_cap | number:2}}
+            %li
+              Cash (in millions):
+              .financial ${{one_company.financials.cash | number}}
+            %li
+              Debt (in millions):
+              .financial ${{one_company.financials.debt | number}}
+            %li
+              Debt Due:
+              .financial {{one_company.financials.debt_due | date: 'MM/yyyy'}}
+            %li
+              Annualized Burn:
+              .financial {{one_company.financials.burn | number}}
+            %li
+              Runway:
+              .financial {{one_company.financials.runway | number}} Years
+            %li
+              3 Month Average Daily Volume:
+              .financial {{one_company.financials.three_month_volume | number}}
+            %li
+              3 Month Average Daily $ Volume
+              .measurement (in $ millions):
+              .financial ${{one_company.financials.three_month_dollar_volume | number:2}}
+        .row.edit-and-destroy
+          %a.btn.edit{:'ng-click' => 'edit_company(one_company.id)', type: :submit, method: :get}= 'Edit Company'
+          %a.btn.destroy{:'ng-click' => 'delete_company(one_company.id)', :'ng-confirm-click' => "Are you sure?"}= 'Delete Company'
+      .span8#company-details
+        .row#product-pipeline
+          %h3= 'Drug Pipeline'
+          %table
+            %tr.program-description{:'ng-repeat' => 'p in one_company.programs'}
+              %td.program-name
+                %a{:'ng-click' => "select_program(p.id)"}= "{{p.name}}"
+              %td
+                {{p.description}}
+                .program-tags
+                  .tag{:'ng-repeat' => 't in p.tags'}
+                    %a{:'ng-click' => "select_tag(t.id)"}= "{{t.name}}"
+        .row.new-snippet-buton
+          = button_to 'New Drug', new_program_path(company_id: "{{one_company.id}}"), method: :get
 
-      .row#timeline
-        %h3= 'Timeline'
-        %table
-          %tr.snippet{:'ng-repeat' => 's in one_company.timeline_snippets'}
-            %td.date {{s.event_date | date: 'MM/yyyy'}}
-            %td.catalyst
-              %a{:'ng-click' => 'select_snippet(s.id)'} {{s.text}}
-        .new-snippet-buton
-          = button_to 'New Snippet', new_info_snippet_path, method: :get
-      .row#diligence
-        %h3= 'Diligence'
-        %ul.no-style
-          %li.info-snippet{:'ng-repeat' => 's in one_company.diligence_snippets'}
-            %a.preserve-style{:'ng-click' => "select_snippet(s.id)"}
-              .subject{:'ng-show' => 's.subject'} {{s.subject}}
-              .scrollable.one-color {{s.text}}
-            .event-date{:'ng-show' => 's.event_date'}= "Date: {{s.event_date | date: 'MM/dd/yyyy'}}"
-        .new-snippet-buton
-          = button_to 'New Snippet', new_info_snippet_path, method: :get
-      .row#other
-        %h3= 'Other Details and Notes'
-        .preserve-style{:'ng-show' => 'one_company.other'} {{one_company.other}}
+        .row#timeline
+          %h3= 'Timeline'
+          %table
+            %tr.snippet{:'ng-repeat' => 's in one_company.timeline_snippets'}
+              %td.date {{s.event_date | date: 'MM/yyyy'}}
+              %td.catalyst
+                %a{:'ng-click' => 'select_snippet(s.id)'} {{s.text}}
+          .new-snippet-buton
+            = button_to 'New Snippet', new_info_snippet_path, method: :get
+        .row#diligence
+          %h3= 'Diligence'
+          %ul.no-style
+            %li.info-snippet{:'ng-repeat' => 's in one_company.diligence_snippets'}
+              %a.preserve-style{:'ng-click' => "select_snippet(s.id)"}
+                .subject{:'ng-show' => 's.subject'} {{s.subject}}
+                .scrollable.one-color {{s.text}}
+              .event-date{:'ng-show' => 's.event_date'}= "Date: {{s.event_date | date: 'MM/dd/yyyy'}}"
+          .new-snippet-buton
+            = button_to 'New Snippet', new_info_snippet_path, method: :get
+        .row#other
+          %h3= 'Other Details and Notes'
+          .preserve-style{:'ng-show' => 'one_company.other'} {{one_company.other}}
 
 
