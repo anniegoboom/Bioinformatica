@@ -165,30 +165,28 @@ factory('ajax_service', ['CONST', '$http', 'url_formatter', function(CONST, $htt
   return ajax_service
 }]).
 factory('communication_service', ['$location', 'ajax_service', function($location, ajax_service){
-  var communication_service = {}
+  return {
+    updateURL: function(type, id) {
+      if(typeof type === 'undefined') $location.path('/')
+      else if(typeof id === 'undefined') $location.path(type)
+      else $location.path(type+'='+id)
+    },
 
-  communication_service.updateURL = function(type, id){
-    if(type==null) $location.path('/');
-    else if(id==undefined) $location.path(type)
-    else $location.path(type+'='+id);
+    showAll: function(type) {
+      this.updateURL(type)
+    },
+
+    setId: function(type, id) {
+      this.updateURL(type, id)
+    },
+
+    edit: function(type, id) {
+      window.location = '/'+type+'/'+id+'/edit'
+    },
+
+    destroy: function(type, id) {
+      ajax_service.destroy(type,id)
+      $location.path('/')
+    }
   }
-
-  communication_service.showAll = function(type){
-    communication_service.updateURL(type)
-  }
-
-  communication_service.setId = function(type, id){
-    communication_service.updateURL(type, id)
-  }
-
-  communication_service.edit = function(type, id){
-    window.location = '/'+type+'/'+id+'/edit'
-  }
-
-  communication_service.destroy = function(type, id){
-    ajax_service.destroy(type,id)
-    $location.path('/')
-  }
-
-  return communication_service
 }]);
