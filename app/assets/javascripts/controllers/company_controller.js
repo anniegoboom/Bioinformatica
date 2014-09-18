@@ -53,7 +53,6 @@ bioinformaticaApp.controller('company_controller', function($scope, ajax_service
       type = urlString[0]
       id = urlString[1]
 
-      //check to make sure it's even for companies
       if( id != undefined ) get_company_by_id(id)
       else get_all_companies()
     },
